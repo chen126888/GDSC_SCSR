@@ -21,30 +21,27 @@ import PropTypes from 'prop-types';
 const useStyles = makeStyles( theme => createStyles({
   // When use Typescript: theme: Theme which imports from '@material-ui/styles'
   root: props => ({
-    backgroundColor: theme.palette.primary.dark,
-    color: theme.palette.primary.contrastText,
-    transition: theme.transitions.create("all", {
-      easing: theme.transitions.easing.sharp, 
-      duration: theme.transitions.duration.leavingScreen,
-    }),
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.paper,
+    // backgroundColor: 'white !important',
+    // color: theme.palette.primary.contrastText,
+    borderRadius: theme.spacing(2),
+    margin: theme.spacing(2),
+    // transition: theme.transitions.create("all", {
+    //   easing: theme.transitions.easing.sharp, 
+    //   duration: theme.transitions.duration.leavingScreen,
+    // }),
   }), 
-  paper: props => ({
-    top: 0,
-    width: props.expandControl ? props.expandWidth : props.normalWidth,
-    height: `calc(100% - ${2*theme.spacing(props.spacingLv)}px)`,
-    marginTop: theme.spacing(props.spacingLv),
-    marginBottom: theme.spacing(props.spacingLv),
-    marginRight: theme.spacing(
-      props.spacingLv * ( ((props.justifyFrame==='left') && (!props.expandControl)) ? 1/2 : 1 )
-    ),
-    marginLeft: theme.spacing(
-      props.spacingLv * ( ((props.justifyFrame==='right') && (!props.expandControl)) ? 1/2 : 1 )
-    ),
-    transition: theme.transitions.create("all", {
-      easing: theme.transitions.easing.sharp, 
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  }),
+  tabBar: {
+    // backgroundColor: theme.palette.background.paper,
+    backgroundColor: 'white !important',
+    // color: theme.palette.primary.contrastText,
+    borderTopLeftRadius: theme.spacing(2),
+    borderTopRightRadius: theme.spacing(2),
+  },
+  tabBarItem: {
+    fontSize: theme.spacing(3),
+  },
 
 }) );
 
@@ -84,6 +81,8 @@ function CourseTabBar (props) {
         <Tabs
           value={props.value}
           onChange={props.onChange}
+          textColor="secondary"
+          indicatorColor="secondary"
           variant="scrollable"
           scrollButtons="off"
           aria-label="scrollable prevent tabs"
@@ -94,20 +93,12 @@ function CourseTabBar (props) {
                 aria-label={tabLabel} 
                 className={classes.tabBarItem} 
                 key={i}
+                wrapped
                 {...a11yProps(i)} 
               />
             )})
           } 
         </Tabs>
-      </Grid>
-
-      <Grid item xs={2} className={classes.modalCloseButtonGrid}>
-        <Button 
-          className={classes.modalCloseButton} 
-          onClick={props.handleCloseButton} 
-        >
-          <CloseIcon size="large" />
-        </Button> 
       </Grid>
 
     </Grid>
@@ -125,9 +116,9 @@ function CourseTabs (props) {
   const [value, setValue] = useState(0);
   const handleChange = (event, newValue) => setValue(newValue);
 
-  const TabContents = props.contents.map((guestList, i) => (
+  const TabContents = props.contents.map((tabContent, i) => (
     <TabLabel value={value} index={i} key={i} >
-      TabContent-{guestList}
+      TabContent-{tabContent}
     </TabLabel>
   ) );
 

@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 // Main Components
-import Frame from './Frame';
+import Frame from '../FancyFrame/Frame';
 // Styles
 import { makeStyles } from '@material-ui/core/styles';
 import { createStyles } from '@mui/styles';
