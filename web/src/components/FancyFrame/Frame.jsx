@@ -8,7 +8,7 @@ import FrameBar from './FrameBar';
 import { makeStyles } from '@material-ui/core/styles';
 import { createStyles } from '@mui/styles';
 // Hooks and Function
-import clsx from 'clsx';
+// import clsx from 'clsx';
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
@@ -25,7 +25,7 @@ const useStyles = makeStyles( theme => createStyles({
   // When use Typescript: theme: Theme which imports from '@material-ui/styles'
   root: props => ({
     top: 0,
-    width: props.frameWidth,
+    width: `${props.frameWidth}%`,
     // backgroundColor: theme.palette.primary.dark,
     // color: theme.palette.primary.contrastText,
     zIndex: props.zIndex,
@@ -36,6 +36,8 @@ const useStyles = makeStyles( theme => createStyles({
     }),
   }), 
   paper: props => ({
+    // display: props.frameWidth < 30 ? 'none' : 'block',
+    overflow: props.frameWidth < 30 ? 'hidden' : 'none',
     transition: theme.transitions.create("all", {
       easing: theme.transitions.easing.sharp, 
       duration: theme.transitions.duration.leavingScreen,
@@ -44,27 +46,31 @@ const useStyles = makeStyles( theme => createStyles({
     marginTop: theme.spacing(props.spacingLv),
     marginBottom: theme.spacing(props.spacingLv),
     marginRight: theme.spacing(
-      props.spacingLv * ( props.frameSize===1 ? 1/2 : 1 )
+      // props.spacingLv * ( props.frameSize===1 ? 1/2 : 1 )
+      props.spacingLv * 1/2
     ),
     marginLeft: theme.spacing(
-      props.spacingLv * ( props.frameSize===0 ? 1/2 : 1 )
+      // props.spacingLv * ( props.frameSize===0 ? 1/2 : 1 )
+      props.spacingLv * 1/2
     ),
     borderRadius: `${theme.spacing(props.spacingLv)}px !important`,
   }),
 
 }) );
 
-const frameWidthGiver = size => `${-5*size**2 + 45*size + 30}%`;
+const frameWidthGiver = size => (size >= 0 ? (-5*size**2 + 45*size + 30) : 0);
   // 0 -> 30, 1 -> 70, 2 -> 100
 const frameEnlargePass = (allowMax, currentSize) => (currentSize < allowMax);
 const frameShrinkPass = (allowMin, currentSize) => (currentSize > allowMin);
   // return { isEnlarge, isShrink }
 
 function Frame (props) {
-  const [ frameSize, setFrameSize ] = useState(1); // 0:smalll, 1:medium, 2:large
+  // const [ frameSize, setFrameSize ] = useState(props.frameSize); 
+  // 0:smalll, 1:medium, 2:large
+  const frameSize = props.frameSize;
   const [ isEnlarge, setIsEnlarge ] = useState(frameEnlargePass(props.allowMax, frameSize));
   const [ isShrink, setIsShrink ] = useState(frameShrinkPass(props.allowMin, frameSize));
-  
+
   const propsStyled = {
     spacingLv: props.spacingLv,
     frameSize: frameSize,
@@ -72,8 +78,17 @@ function Frame (props) {
     zIndex: 1011,
   };
 
-  const handleEnlarge = () => setFrameSize( isEnlarge ? frameSize+1 : frameSize);
-  const handleShrink = () => setFrameSize( isShrink ? frameSize-1 : frameSize);
+  const Children = props.children;
+
+  const handleEnlarge = () => {
+    props.moveEnlarge();
+    // setFrameSize( isEnlarge ? frameSize+1 : frameSize);
+
+  };
+  const handleShrink = () => {
+    props.moveShrink();
+    // setFrameSize( isShrink ? frameSize-1 : frameSize);
+  };
 
 
   const frameSizeChange = () => {
@@ -104,14 +119,15 @@ function Frame (props) {
 
           spacingLv={props.spacingLv}
           frameSize={frameSize}
+          frameWidth={frameWidthGiver(frameSize)}
         />
           <Typography component="p" variant="p" display="flex">
             {'isEnlarge: '}{String(isEnlarge)} 
             {' / isShrink: '}{String(isShrink)} 
             {' / spacing: '}{String(props.spacingLv)} 
-            {' / frameWidth: '}{frameWidthGiver(frameSize)}
+            {' / frameWidth: '}{`${frameWidthGiver(frameSize)}%`}
           </Typography>
-        {props.children}
+        <Children {...props} /> 
       </Paper>
     </Box>
   )
@@ -120,6 +136,13 @@ Frame.propTypes = {
   children: PropTypes.node,
   allowMax: PropTypes.number.isRequired,
   allowMin: PropTypes.number.isRequired,
+  frameSize: PropTypes.number.isRequired,
+  moveEnlarge: PropTypes.func.isRequired,
+  moveShrink: PropTypes.func.isRequired,
 };
-
+Frame.defaultProps = {
+  moveEnlarge: () => console.log('Enlarge'),
+  moveShrink: () => console.log('Shrink'),
+  frameSize: 1,
+}
 export default Frame;

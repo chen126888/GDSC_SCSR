@@ -1,14 +1,8 @@
 // Material Components
-import Grid from '@mui/material/Grid';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton'
-import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
 import Typography from "@material-ui/core/Typography";
 import InputBase from '@mui/material/InputBase';
 // Main Components
@@ -16,11 +10,7 @@ import InputBase from '@mui/material/InputBase';
 // Styles
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import { createStyles } from '@mui/styles';
-// import CloseIcon from '@mui/icons-material/Close';
-// import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SearchIcon from '@mui/icons-material/Search';
-// import SwitchLeftIcon from '@mui/icons-material/SwitchLeft';
-// import SwitchRightIcon from '@mui/icons-material/SwitchRight';
 import SvgIcon from '@mui/material/SvgIcon';
 // Hooks and Function
 import clsx from 'clsx';
@@ -31,6 +21,7 @@ const useStyles = makeStyles( theme => createStyles({
   root: props => ({
     // backgroundColor: theme.palette.primary.dark,
     // color: theme.palette.primary.contrastText,
+    overflow: props.frameWidth < 30 ? 'hidden' : 'none',
     transition: theme.transitions.create("all", {
       easing: theme.transitions.easing.sharp, 
       duration: theme.transitions.duration.leavingScreen,
@@ -39,6 +30,7 @@ const useStyles = makeStyles( theme => createStyles({
     borderTopLeftRadius: theme.spacing(props.spacingLv),
   }), 
   toolbar: props => ({
+    overflow: props.frameWidth < 30 ? 'hidden' : 'none',
     borderTopRightRadius: theme.spacing(props.spacingLv),
     borderTopLeftRadius: theme.spacing(props.spacingLv),
     padding: '0 0 0 0 !important',
@@ -51,7 +43,8 @@ const useStyles = makeStyles( theme => createStyles({
     marginRight: theme.spacing(props.spacingLv),
     height: '100%',
   }),
-  frameTitle: {
+  frameTitle: props => ({
+    overflow: props.frameWidth < 30 ? 'hidden' : 'none',
     marginRight: 12,
     marginLeft: 12,
     flexGrow: 1,
@@ -60,7 +53,7 @@ const useStyles = makeStyles( theme => createStyles({
     display: "flex",
     flexDirection: "column",
     justifyContent: "center"
-  },
+  }),
   Button: props => ({
     borderTopLeftRadius: theme.spacing(props.spacingLv),
     color: 'white !important',
