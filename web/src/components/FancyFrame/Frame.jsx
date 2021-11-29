@@ -121,12 +121,17 @@ function Frame (props) {
           frameSize={frameSize}
           frameWidth={frameWidthGiver(frameSize)}
         />
-          <Typography component="p" variant="p" display="flex">
-            {'isEnlarge: '}{String(isEnlarge)} 
-            {' / isShrink: '}{String(isShrink)} 
-            {' / spacing: '}{String(props.spacingLv)} 
-            {' / frameWidth: '}{`${frameWidthGiver(frameSize)}%`}
-          </Typography>
+        <Typography component="p" variant="p" display="flex">
+          {'isEnlarge: '}{String(isEnlarge)} 
+          {' / isShrink: '}{String(isShrink)} 
+          {' / spacing: '}{String(props.spacingLv)} 
+          {' / frameWidth: '}{`${frameWidthGiver(frameSize)}%`}
+          {' / frameSize: '}{`${frameSize}`}
+          {' / allowMax: '}{props.allowMax}
+          {' / allowMin: '}{props.allowMin}
+          {' / index: '}{props.index}
+          {' / label: '}{props.frameTitleLabel}
+        </Typography>
         <Children {...props} /> 
       </Paper>
     </Box>

@@ -18,7 +18,7 @@ import MinimizeIcon from '@mui/icons-material/Minimize';
 // Hooks and Function
 // import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 
 const useStyles = makeStyles( theme => createStyles({
   root: {
@@ -112,15 +112,15 @@ function MainContent (props) {
     checkTgt === 'index' ? i : value[checkTgt]
   ));
   const checkFrameAllow = (frameSet, checkTgt) => {
-    let tmpArray = new Array;
+    let tmpArray = [];
     // const range = (min, max) => [...Array(max-min).keys()].map ((value, i) => (min+i));
     frameSet.map((value, i) => [value.allowMin, value.allowMax]).map((value, i) => {
       switch (checkTgt) {
         case 'small': 
-          if (value[0] === 0) { tmpArray.add(i) }
+          if (value[0] === 0) { tmpArray.push(i) }
           break;
         case 'fullscreen': 
-          if (value[1] === 2) { tmpArray.add(i) }
+          if (value[1] === 2) { tmpArray.push(i) }
           break;
         default:
           tmpArray.add(i) // all frames has medium size
@@ -128,6 +128,8 @@ function MainContent (props) {
     });
     return tmpArray;
   }
+  // let frameSet = props.frameSet;
+  let frameSet = demoFrameSet;
 
   const [ frameIndex, setFrameIndex ] = useState(
     getFrameProps(props.frameSet, 'index')
@@ -149,35 +151,45 @@ function MainContent (props) {
   // );
 
   // handle Enlarge and Shrink
-  const moveShrinkToSmall = () => {
+  const handleShrinkToSmall = () => {
     // leftFrame used
-    let { leftFrameIndex, rightFrameIndex } = frameIndex.slice(0,2);
+    let [ leftFrameIndex, rightFrameIndex, ...other ] = frameIndex;
     let frameDisplayClone = frameDisplay.slice();
+    console.log('handleShrinkToSmall');
+    console.log(frameIndex, frameDisplay, frameDisplayClone);
+    console.log(leftFrameIndex, rightFrameIndex, other);
 
     frameDisplayClone[leftFrameIndex] = 0;
     frameDisplayClone[rightFrameIndex] = 1;
 
-    setFrameIndex([rightFrameIndex, leftFrameIndex, ...frameIndex.slice(2) ]);
+    setFrameIndex([ rightFrameIndex, leftFrameIndex, ...other ]);
     setFrameDisplay(frameDisplayClone);
     // index interchange between 2 current frame
   };
-  
-  const moveShrinkToMedium = () => {
+
+  const handleShrinkToMedium = () => {
     // leftFrame used
-    let { leftFrameIndex, rightFrameIndex } = frameIndex.slice(0,2);
-    let frameDisplayClone = frameDisplay.slice();
+    let [ leftFrameIndex, rightFrameIndex, ...other ] = frameIndex;
+    let frameDisplayClone = [...frameDisplay];
+    console.log('handleShrinkToMedium');
+    console.log(frameIndex, frameDisplay, frameDisplayClone);
+    console.log(leftFrameIndex, rightFrameIndex, other);
 
     frameDisplayClone[leftFrameIndex] = 1;
     frameDisplayClone[rightFrameIndex] = 0;
 
     setFrameDisplay(frameDisplayClone);
+    console.log(frameIndex, frameDisplay, frameDisplayClone);
     // no index interchange
   };
 
-  const moveEnlargeToMedium = () => {
+  const handleEnlargeToMedium = () => {
     // rightFrame used
-    let { leftFrameIndex, rightFrameIndex } = frameIndex.slice(0,2);
+    let [ leftFrameIndex, rightFrameIndex, ...other ] = frameIndex;
     let frameDisplayClone = frameDisplay.slice();
+    console.log('handleEnlargeToMedium');
+    console.log(frameIndex, frameDisplay, frameDisplayClone);
+    console.log(leftFrameIndex, rightFrameIndex, other);
 
     let newSmallAllow = (allowSmall.filter(i => i!==rightFrameIndex))[
       Math.floor(Math.random()*(allowSmall.length-1))
@@ -194,74 +206,104 @@ function MainContent (props) {
       ) 
     ]);
     setFrameDisplay(frameDisplayClone);
+    console.log(frameIndex, frameDisplay, frameDisplayClone);
     // original leftFrame disappear
     // right to left
     // summon newSmallAllow as new right 
   };
 
-  const moveEnlargeToFullScreen = () => {
+  const handleEnlargeToFullScreen = () => {
     // leftFrame used
-    let { leftFrameIndex, rightFrameIndex } = frameIndex.slice(0,2);
+    let [ leftFrameIndex, rightFrameIndex, ...other ] = frameIndex;
     let frameDisplayClone = frameDisplay.slice();
+    console.log('handleEnlargeToFullScreen');
+    console.log(frameIndex, frameDisplay, frameDisplayClone);
+    console.log(leftFrameIndex, rightFrameIndex, other);
 
     frameDisplayClone[leftFrameIndex] = 2;
     frameDisplayClone[rightFrameIndex] = -1;
 
     setFrameDisplay(frameDisplayClone);
+    console.log(frameIndex, frameDisplay, frameDisplayClone);
     // right disapear
     // left to fullscreen
     // no index interchange
   };
 
+  // When select any frame
+  // props.selectedFrame
+  const handleFrameSelect = () => {
+    let [ leftFrameIndex, rightFrameIndex, ...other ] = frameIndex;
+    let frameDisplayClone = frameDisplay.slice();
+    console.log(`handleFrameSelect with ${props.selectedFrame}`);
+    console.log(frameIndex, frameDisplay, frameDisplayClone);
+    console.log(leftFrameIndex, rightFrameIndex, other);
 
-  const frameRender = frameIndex.map((index, i) => {
-    let frameData = (props.frameSet)[index];
-    return (
-      <Frame
-        moveEnlarge={() => console.log('Enlarge')}
-        moveShrink={() => console.log('Shrink')}
+    if (props.selectedFrame === leftFrameIndex) {
+      // nothing to do
+    } else if (props.selectedFrame === rightFrameIndex) {
+      handleEnlargeToMedium();
+    } else {
+      if (allowSmall.includes(leftFrameIndex)) {
+        frameDisplayClone[props.selectedFrame] = 1
+        frameDisplayClone[frameIndex[0]] = 0
+        frameDisplayClone[frameIndex[1]] = -1;
 
-        frameTitleLabel={frameData.index}
-        frameSize={frameDisplay[index]}
-        allowMax={frameData.allowMax}
-        allowMin={frameData.allowMin}
+        setFrameIndex([ 
+          props.selectedFrame, frameIndex[0], ...frameIndex.filter(
+            i => (i!==props.selectedFrame)&&(i!==frameIndex[0])
+          )
+        ]);
+        setFrameDisplay(frameDisplayClone);
+      } else {
+        frameDisplayClone[props.selectedFrame] = 1
+        frameDisplayClone[frameIndex[0]] = -1
 
-        buttonCustom={frameData.buttonCustom}
-        searchInputShow={frameData.searchInputShow}
-        buttonCustomShow={frameData.buttonCustomShow}
-        spacingLv={2}
-      >
-        {frameData.children}
-      </Frame>
-    );
-  });
-  // const [ frameRender, setFrameRender ] = useState(demoFrames.map((values, i) => {
-  //   return (
-  //     <Frame
-  //       frameTitleLabel={`測試框架-${value}`}
-  //       moveEnlarge={() => console.log('Enlarge')}
-  //       moveShrink={() => console.log('Shrink')}
-  //       frameSize={1-i}
-  //       allowMax={2}
-  //       allowMin={0}
-  //       spacingLv={2}
-  //     >
-  //       test
-  //     </Frame>
-  //   )
-  // }));
+        setFrameIndex([ 
+          props.selectedFrame, ...frameIndex.filter(
+            i => (i!==props.selectedFrame)
+          )
+        ]);
+        setFrameDisplay(frameDisplayClone);
+      };
+    };
+    console.log(frameIndex, frameDisplay, frameDisplayClone);
+  };
 
+  const mapFrameImporter = (frameIndexArray) => frameIndexArray.map((index, i) => (
+    <Frame
+      moveEnlarge={
+        (frameDisplay[index] === 1) ? handleEnlargeToFullScreen : handleEnlargeToMedium
+      }
+      moveShrink={
+        (frameDisplay[index] === 1) ? handleShrinkToSmall : handleShrinkToMedium
+      }
+      index={index}
 
+      frameTitleLabel={frameSet[index].label}
+      frameSize={frameDisplay[index]}
+      allowMax={frameSet[index].allowMax}
+      allowMin={frameSet[index].allowMin}
 
-  // 必須在這邊就知道每個Frame的allowMax和allowMin
-
-  // const frameRender = frameIndex => {
-
-  // };
-
+      buttonCustom={frameSet[index].buttonCustom}
+      searchInputShow={frameSet[index].searchInputShow}
+      buttonCustomShow={frameSet[index].buttonCustomShow}
+      spacingLv={2}
+    > 
+      test
+      {/* {frameSet[index].children} */}
+    </Frame>
+  ));
+  const [ frameRender, setFrameRender ] = useState(mapFrameImporter(frameIndex));
+  // const handleFrameRefresh = 
+  const setFrameRenderCallBack = useCallback(frameIndexArray => {
+    setFrameRender(mapFrameImporter(frameIndexArray));
+  }, [frameDisplay, frameIndex]);
+  useEffect(() => setFrameRenderCallBack(frameIndex), [ frameIndex, setFrameRenderCallBack]);
 
   const handleWidthChange = () => {
-
+    console.log(getFrameProps(props.frameSet, 'index'));
+    console.log(frameIndex, frameDisplay);
   };
 
   return (
@@ -289,11 +331,11 @@ function MainContent (props) {
     </main>
   );
 };
-MainContent.propTypes = {
-  // calledFrameIndex: PropTypes.number,
-};
+// MainContent.propTypes = {
+//   // selectedFrame: PropTypes.number,
+// };
 MainContent.defaultProps = {
-  frameSet: demoFrameSet
+  frameSet: demoFrameSet,
 }
 
 export default MainContent;
