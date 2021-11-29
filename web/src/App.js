@@ -1,29 +1,40 @@
+// Material Components
+
 // Main Components
 import MainContent from './components/Main/Main';
-// import SimpleCollapse from './components/FancyFrame/note';
+import HeadContent from './components/Header/dummyHeader';
 
-import logo from './logo.svg';
+// Styles
+// import { makeStyles } from '@material-ui/core/styles';
+// import { createStyles } from '@mui/styles';
+// import MinimizeIcon from '@mui/icons-material/Minimize';
+// import logo from './logo.svg';
 import './App.css';
 
+// Hooks and Function
+// import clsx from 'clsx';
+// import PropTypes from 'prop-types';
+import { useState } from 'react';
+
 function App() {
+  const [ selectedFrame, setSelectedFrame ] = useState(0);
+
+  const handleCourseEnrollment = () => setSelectedFrame(0);
+  const handleCourseSearch = () => setSelectedFrame(1);
+  const handleCourseRouteMap = () => setSelectedFrame(2);
+  const handleCourseTracking = () => setSelectedFrame(3);
+
   return (
     <div className="App">
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
-      <MainContent></MainContent>
-      {/* <SimpleCollapse/> */}
+      <HeadContent
+        callCourseEnrollment={handleCourseEnrollment}
+        callCourseSearch={handleCourseSearch}
+        callCourseRouteMap={handleCourseRouteMap}
+        callCourseTracking={handleCourseTracking}
+      ></HeadContent>
+      <MainContent
+        selectedFrame={selectedFrame}
+      ></MainContent>
     </div>
   );
 }

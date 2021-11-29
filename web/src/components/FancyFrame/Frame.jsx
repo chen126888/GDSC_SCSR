@@ -12,15 +12,6 @@ import { createStyles } from '@mui/styles';
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-
-// 1. Click Header buttons, if can shrink, then shrink, otherwise be repalced.
-// 2. Click enlarge button in small frame, 
-//    left one enlarging to replace right one and call anther one small frame at oringnal palce.
-
-// 2: large: 備選清單、課程搜尋
-// 1: medium: 備選清單、課程搜尋、課程地圖、登記課表
-// 0: small: 備選清單、課程地圖
-
 const useStyles = makeStyles( theme => createStyles({
   // When use Typescript: theme: Theme which imports from '@material-ui/styles'
   root: props => ({
@@ -78,12 +69,9 @@ function Frame (props) {
     zIndex: 1011,
   };
 
-  const Children = props.children;
-
   const handleEnlarge = () => {
     props.moveEnlarge();
     // setFrameSize( isEnlarge ? frameSize+1 : frameSize);
-
   };
   const handleShrink = () => {
     props.moveShrink();
@@ -132,7 +120,7 @@ function Frame (props) {
           {' / index: '}{props.index}
           {' / label: '}{props.frameTitleLabel}
         </Typography>
-        <Children {...props} /> 
+        {props.children}
       </Paper>
     </Box>
   )
