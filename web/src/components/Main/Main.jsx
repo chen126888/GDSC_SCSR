@@ -130,27 +130,36 @@ const selectFrame = props => {
   let frameDisplayNext = [...props.frameDisplayArray];
   let frameIndexNext = [...props.frameIndexArray];
   console.log(`handleFrameSelect with ${props.selectedFrameNumber}`);
-  console.log(props.frameIndexArray, props.frameDisplayArray, frameDisplayNext);
-  console.log(leftFrameIndex, rightFrameIndex, other);
+  console.log(
+    'Select Respond:',
+    props.frameIndexArray, 
+    props.frameDisplayArray, 
+    props.lastSelectedNumber,
+    props.selectedFrameNumber
+    );
+  console.log('left,right,...other',leftFrameIndex, rightFrameIndex, other);
 
   if (props.selectedFrameNumber === leftFrameIndex) {
     // nothing to do
-    console.log(props.frameIndexArray, props.frameDisplayArray);
+    console.log('the selected Frame is already in leftFrame.');
+
   } else if (props.selectedFrameNumber === rightFrameIndex) {
+    console.log('the selected Frame is right now to left.');
     let tmp = sizeEnlarge({
       frameIndexArray: props.frameIndexArray,
       frameDisplayArray: props.frameDisplayArray,
       frameSizeNumber: 0,
       allowSmallArray: props.allowSmallArray
     });
-    props.setFrameIndexHook(tmp.frameIndexNext);
-    props.setFrameDisplayHook(tmp.frameDisplayNext);
-    console.log(tmp.frameIndexNext, tmp.frameDisplayNext);
-    // handleEnlargeToMedium
-    // (frameSizeNumber===1) ? 'EnlargeToFullScreen' : 'EnlargeToMedium'
-    // so frameSize give 0
+    frameIndexNext = tmp.frameIndexNext;
+    frameDisplayNext = tmp.frameDisplayNext;
+    // props.setFrameIndexHook(tmp.frameIndexNext);
+    // props.setFrameDisplayHook(tmp.frameDisplayNext);
+    // console.log(tmp.frameIndexNext, tmp.frameDisplayNext);
+
   } else {
     if (props.allowSmallArray.includes(leftFrameIndex)) {
+      console.log('the left Frame can shrink.');
       // Original leftFrame is small allow
       frameDisplayNext[props.selectedFrameNumber] = 1
       frameDisplayNext[leftFrameIndex] = 0; // frameIndexArray[0]
@@ -161,8 +170,10 @@ const selectFrame = props => {
           i => (i !== props.selectedFrameNumber) && (i !== leftFrameIndex)
         )
       ];
+
     } else {
       // Original leftFrame is not small allow
+      console.log('the left Frame is discarded.');
       frameDisplayNext[props.selectedFrameNumber] = 1
       frameDisplayNext[leftFrameIndex] = -1
 
@@ -171,6 +182,7 @@ const selectFrame = props => {
           i => (i !== props.selectedFrameNumber)
         )
       ];
+
     };
   };
   return { frameIndexNext, frameDisplayNext }
@@ -178,6 +190,30 @@ const selectFrame = props => {
 
 
 const renderFrames = props => {
+  console.log(
+    'Render Respond:',
+    props.frameIndexArray, 
+    props.frameDisplayArray, 
+    props.lastSelectedNumber,
+    props.selectedFrameNumber
+    );
+  if (props.selectedFrameNumber === props.lastSelectedNumber) {
+    console.log('Not Select Frame activated');
+    // selectedFrameNumber: props.selectedFrame,
+    // lastSelectedNumber: lastSelected,
+  } else {
+    console.log('Select Frame activated');
+    props.setLastSelectedHook(props.selectedFrameNumber);
+    let tmp = selectFrame({
+        frameIndexArray: props.frameIndexArray,
+        frameDisplayArray: props.frameDisplayArray,
+        allowSmallArray: props.allowSmallArray,
+        selectedFrameNumber: props.selectedFrameNumber,
+    });
+    props.setFrameIndexHook(tmp.frameIndexNext);
+    props.setFrameDisplayHook(tmp.frameDisplayNext);
+    // selectFrame(props);
+  }
 
   return (
     props.frameIndexArray.map((indexForFrame, i) => {
@@ -199,6 +235,13 @@ const renderFrames = props => {
             });
             props.setFrameIndexHook(tmp.frameIndexNext);
             props.setFrameDisplayHook(tmp.frameDisplayNext);
+            console.log(
+              'Enlarge Respond:',
+              props.frameIndexArray, 
+              props.frameDisplayArray, 
+              props.lastSelectedNumber,
+              props.selectedFrameNumber
+              );
             console.log(tmp.frameIndexNext, tmp.frameDisplayNext);
           }}
           moveShrink={() => {
@@ -210,9 +253,17 @@ const renderFrames = props => {
             });
             props.setFrameIndexHook(tmp.frameIndexNext);
             props.setFrameDisplayHook(tmp.frameDisplayNext);
+            console.log(
+              'Shrink Respond:',
+              props.frameIndexArray, 
+              props.frameDisplayArray, 
+              props.lastSelectedNumber,
+              props.selectedFrameNumber
+              );
             console.log(tmp.frameIndexNext, tmp.frameDisplayNext);
           }}
           index={indexForFrame}
+          key={i}
 
           frameTitleLabel={label}
           frameSize={sizeNumber}
@@ -237,30 +288,32 @@ function MainContent(props) {
   const classes = useStyles(props);
   // let frameSet = props.frameSet;
   let frameData = demoFrameData;
-  // let allowSmall = props.allowSmall;
   let allowSmall = checkFrameAllow(frameData, 'small');
+  // let allowFullScreen = checkFrameAllow(frameData, 'fullscreen');
 
-  const [frameIndex, setFrameIndex] = useState(
-    getFrameProps(frameData, 'index')
-  );
+  const [frameIndex, setFrameIndex] = useState(getFrameProps(frameData, 'index'));
   // [ (0:'登記課表', 1:'備選清單'), 2:'課程搜尋', 3:'課程地圖']
   // Decide the Arrangement of Stack
 
-  const [frameDisplay, setFrameDisplay] = useState(
-    getFrameProps(frameData, 'defaultDisplay')
-  );
+  const [frameDisplay, setFrameDisplay] = useState(getFrameProps(frameData, 'defaultDisplay'));
   // [ 0:'登記課表', 1:'備選清單', 2:'課程搜尋', 3:'課程地圖']
   // Decide the size of each frame
+
+  const [lastSelected, setLastSelected] = useState(1);
+  // Assist to recongnize whether select Frame be active
 
   const frameRender = useMemo(() => renderFrames({
     frameDataArray: frameData,
     frameIndexArray: frameIndex,
     frameDisplayArray: frameDisplay,
     allowSmallArray: allowSmall,
+    selectedFrameNumber: props.selectedFrame,
+    lastSelectedNumber: lastSelected,
     setFrameIndexHook: setFrameIndex,
     setFrameDisplayHook: setFrameDisplay,
+    setLastSelectedHook: setLastSelected,
   }), [
-    frameData, frameIndex, frameDisplay, allowSmall,
+    frameData, frameIndex, frameDisplay, allowSmall, props.selectedFrame, lastSelected
   ]);
   
   // useEffect(() => selectFrame({
@@ -275,8 +328,7 @@ function MainContent(props) {
   // ]);
 
   const handleWidthChange = () => {
-    console.log(getFrameProps(props.frameSet, 'index'));
-    console.log(frameIndex, frameDisplay);
+    console.log('Panel Respond:', frameIndex, frameDisplay, lastSelected, props.selectedFrame);
   };
 
   return (

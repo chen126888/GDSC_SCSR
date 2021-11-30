@@ -19,10 +19,23 @@ import { useState } from 'react';
 function App() {
   const [ selectedFrame, setSelectedFrame ] = useState(0);
 
-  const handleCourseEnrollment = () => setSelectedFrame(0);
-  const handleCourseSearch = () => setSelectedFrame(1);
-  const handleCourseRouteMap = () => setSelectedFrame(2);
-  const handleCourseTracking = () => setSelectedFrame(3);
+  const handleCourseEnrollment = () => {
+    setSelectedFrame(0);
+    console.log('登記課表');
+  };
+  const handleCourseSearch = () => {
+    setSelectedFrame(2);
+    console.log('課程搜尋');
+  };
+  const handleCourseRouteMap = () => {
+    setSelectedFrame(3);
+    console.log('課程地圖');
+  };
+  const handleCourseTracking = () => {
+    setSelectedFrame(1);
+    console.log('備選清單');
+  }
+  // [ 0:'登記課表', 1:'備選清單', 2:'課程搜尋', 3:'課程地圖']
 
   return (
     <div className="App">

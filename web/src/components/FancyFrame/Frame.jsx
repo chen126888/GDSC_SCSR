@@ -66,7 +66,7 @@ function Frame (props) {
     spacingLv: props.spacingLv,
     frameSize: frameSize,
     frameWidth: frameWidthGiver(frameSize), 
-    zIndex: 1011,
+    // zIndex: 1011,
   };
 
   const handleEnlarge = () => {
@@ -92,7 +92,6 @@ function Frame (props) {
       <Paper
         variant="outlined"
         className={classes.paper}
-        elevation={8}
       >
         <FrameBar
           buttonEnlargeShow={isEnlarge}
@@ -109,7 +108,7 @@ function Frame (props) {
           frameSize={frameSize}
           frameWidth={frameWidthGiver(frameSize)}
         />
-        <Typography component="p" variant="p" display="flex">
+        <Typography component="p" variant="body1">
           {'isEnlarge: '}{String(isEnlarge)} 
           {' / isShrink: '}{String(isShrink)} 
           {' / spacing: '}{String(props.spacingLv)} 
