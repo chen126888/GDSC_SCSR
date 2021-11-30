@@ -1,15 +1,15 @@
 // Material Components
 // import ButtonGroup from '@mui/material/ButtonGroup';
 import Button from '@mui/material/Button';
-// import Box from '@mui/material/Box';
+import Box from '@mui/material/Box';
 
 // Main Components
 // import Frame from '../FancyFrame/Frame';
 // import CourseTabs from '../CourseSelecter/CourseSheetTab';
 
 // Styles
-// import { makeStyles } from '@material-ui/core/styles';
-// import { createStyles } from '@mui/styles';
+import { makeStyles } from '@material-ui/core/styles';
+import { createStyles } from '@mui/styles';
 import MinimizeIcon from '@mui/icons-material/Minimize';
 // import CloseIcon from '@mui/icons-material/Close';
 // import EditIcon from '@mui/icons-material/Edit';
@@ -30,16 +30,40 @@ import MinimizeIcon from '@mui/icons-material/Minimize';
 // 1: medium: 備選清單、課程搜尋、課程地圖、登記課表
 // 0: small: 備選清單、課程地圖
 
-const DummyFrameChild = props => (
-  <div {...props}>
-    It's dummy child
-  </div>
-);
-const DummybuttonCustom = props => (
-  <Button>
-    <MinimizeIcon></MinimizeIcon>
-  </Button>
-);
+// [ 0:'登記課表', 1:'備選清單', 2:'課程搜尋', 3:'課程地圖']
+
+const useStyles = makeStyles(theme => createStyles({
+  // When use Typescript: theme: Theme which imports from '@material-ui/styles'
+  Button: props => ({
+    borderTopLeftRadius: theme.spacing(props.spacingLv),
+    color: 'white !important',
+    height: '100%',
+  }),
+
+}));
+
+const DummyFrameChild = props => {
+  // const classes = useStyles(props);
+  // console.log(props);
+  return (
+    <div key={props.keyForChild}>
+      It's dummy child
+      <Box>
+        AAAAAAAAAAAAAAAAAA 
+        size: {props.frameSize}
+        key = {props.keyForChild}
+      </Box>
+    </div>
+  )
+};
+const DummybuttonCustom = props => {
+  const classes = useStyles(props);
+  return (
+    <Button className={classes.Button} >
+      <MinimizeIcon fontSize='large' ></MinimizeIcon>
+    </Button>
+  )
+};
 
 var demoFrameData = [
   {
@@ -47,20 +71,28 @@ var demoFrameData = [
     defaultDisplay: 1,
     allowMax: 1,
     allowMin: 1,
-    children: (
-      <DummyFrameChild />
-    ),
+    children: [(
+      <DummyFrameChild key={1}/>
+    ), (
+      <DummyFrameChild key={2} />
+    )],
+    panelCustom: "dala, customPanel",
+    panelCustomShow: true,
     buttonCustom: [(<DummybuttonCustom />), (<DummybuttonCustom />)],
     buttonCustomShow: true,
-    searchInputShow: true,
+    searchInputShow: false,
   }, {
     label: '備選清單',
     defaultDisplay: 0,
     allowMax: 2,
     allowMin: 0,
-    children: (
-      <DummyFrameChild />
-    ),
+    children: [(
+      <DummyFrameChild key={1}/>
+    ), (
+      <DummyFrameChild key={2} />
+    )],
+    panelCustom: "dala, customPanel",
+    panelCustomShow: true,
     buttonCustom: [(<DummybuttonCustom />), (<DummybuttonCustom />)],
     buttonCustomShow: true,
     searchInputShow: true,
@@ -69,9 +101,13 @@ var demoFrameData = [
     defaultDisplay: -1,
     allowMax: 2,
     allowMin: 1,
-    children: (
-      <DummyFrameChild />
-    ),
+    children: [(
+      <DummyFrameChild key={1}/>
+    ), (
+      <DummyFrameChild key={2} />
+    )],
+    panelCustom: "dala, customPanel",
+    panelCustomShow: true,
     buttonCustom: [(<DummybuttonCustom />), (<DummybuttonCustom />)],
     buttonCustomShow: true,
     searchInputShow: true,
@@ -80,14 +116,17 @@ var demoFrameData = [
     defaultDisplay: -1,
     allowMax: 1,
     allowMin: 0,
-    children: (
-      <DummyFrameChild />
-    ),
+    children: [(
+      <DummyFrameChild key={1}/>
+    ), (
+      <DummyFrameChild key={2} />
+    )],
+    panelCustom: "dala, customPanel",
+    panelCustomShow: true,
     buttonCustom: [(<DummybuttonCustom />), (<DummybuttonCustom />)],
     buttonCustomShow: true,
-    searchInputShow: true,
+    searchInputShow: false,
   },
 ];
-  // [ 0:'登記課表', 1:'備選清單', 2:'課程搜尋', 3:'課程地圖']
 
 export { DummyFrameChild, DummybuttonCustom, demoFrameData };

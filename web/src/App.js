@@ -3,6 +3,7 @@
 // Main Components
 import MainContent from './components/Main/Main';
 import HeadContent from './components/Header/dummyHeader';
+import { demoFrameData } from './components/Main/dummyChildren';
 
 // Styles
 // import { makeStyles } from '@material-ui/core/styles';
@@ -47,6 +48,7 @@ function App() {
       ></HeadContent>
       <MainContent
         selectedFrame={selectedFrame}
+        frameData={demoFrameData}
       ></MainContent>
     </div>
   );

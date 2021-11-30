@@ -11,9 +11,11 @@ import InputBase from '@mui/material/InputBase';
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import { createStyles } from '@mui/styles';
 import SearchIcon from '@mui/icons-material/Search';
-import SvgIcon from '@mui/material/SvgIcon';
+import { 
+  EnlargeIcon, ShrinkIcon, FullScreenIcon
+} from './FrameBarIcon';
 // Hooks and Function
-import clsx from 'clsx';
+// import clsx from 'clsx';
 // import { useState, useEffect } from 'react';
 
 const useStyles = makeStyles( theme => createStyles({
@@ -87,12 +89,13 @@ const useStyles = makeStyles( theme => createStyles({
     justifyContent: 'center',
   },
   inputRoot: {
-    color: 'inherit',
+    color: 'inherit !important',
     height: '100%',
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
+    color: 'inherit !important',
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create('width'),
@@ -103,36 +106,6 @@ const useStyles = makeStyles( theme => createStyles({
   },
 
 }) );
-
-const EnlargeIcon = props => (
-  <SvgIcon {...props} width="180" height="180" viewBox="0 0 180 180" fill="none">
-  <path
-    d="M 27,27.5 C 16.32674,27.5 7.5,36.32674 7.5,47 v 86 c 0,10.67326 8.82674,19.5 19.5,19.5 h 126 c 10.67326,0 19.5,-8.82674 19.5,-19.5 V 47 c 0,-10.67326 -8.82674,-19.5 -19.5,-19.5 z m 0,15 h 126 c 2.62273,0 4.5,1.877273 4.5,4.5 v 86 c 0,2.62273 -1.87727,4.5 -4.5,4.5 H 27 c -2.622727,0 -4.5,-1.87727 -4.5,-4.5 V 47 c 0,-2.622727 1.877273,-4.5 4.5,-4.5 z"
-    id="FullFrame"
-    opacity=".3" />
-  <path
-    d="M 27,27.5 C 16.32674,27.5 7.5,36.32674 7.5,47 v 86 c 0,10.67326 8.82674,19.5 19.5,19.5 h 76 c 10.67326,0 19.5,-8.82674 19.5,-19.5 V 47 c 0,-10.67326 -8.82674,-19.5 -19.5,-19.5 z m 0,15 h 76 c 2.62273,0 4.5,1.877273 4.5,4.5 v 86 c 0,2.62273 -1.87727,4.5 -4.5,4.5 H 27 c -2.622727,0 -4.5,-1.87727 -4.5,-4.5 V 47 c 0,-2.622727 1.877273,-4.5 4.5,-4.5 z"
-    id="LeftFrame" />
-  </SvgIcon>
-);
-const ShrinkIcon = props => (
-  <SvgIcon {...props}  width="180" height="180" viewBox="0 0 180 180" fill="none">
-    <path
-      d="M 27,27.5 C 16.32674,27.5 7.5,36.32674 7.5,47 v 86 c 0,10.67326 8.82674,19.5 19.5,19.5 h 126 c 10.67326,0 19.5,-8.82674 19.5,-19.5 V 47 c 0,-10.67326 -8.82674,-19.5 -19.5,-19.5 z m 0,15 h 126 c 2.62273,0 4.5,1.877273 4.5,4.5 v 86 c 0,2.62273 -1.87727,4.5 -4.5,4.5 H 27 c -2.622727,0 -4.5,-1.87727 -4.5,-4.5 V 47 c 0,-2.622727 1.877273,-4.5 4.5,-4.5 z"
-      id="FullFrame"
-      opacity=".3" />
-    <path
-      d="m 127,27.5 c -10.67326,0 -19.5,8.82674 -19.5,19.5 v 86 c 0,10.67326 8.82674,19.5 19.5,19.5 h 26 c 10.67326,0 19.5,-8.82674 19.5,-19.5 V 47 c 0,-10.67326 -8.82674,-19.5 -19.5,-19.5 z m 0,15 h 26 c 2.62273,0 4.5,1.877273 4.5,4.5 v 86 c 0,2.62273 -1.87727,4.5 -4.5,4.5 h -26 c -2.62273,0 -4.5,-1.87727 -4.5,-4.5 V 47 c 0,-2.622727 1.87727,-4.5 4.5,-4.5 z"
-      id="RightFrame" />
-  </SvgIcon>
-);
-const FullScreenIcon = props => (
-  <SvgIcon {...props} width="180" height="180" viewBox="0 0 180 180" fill="none">
-    <path
-      d="M 27,27.5 C 16.32674,27.5 7.5,36.32674 7.5,47 v 86 c 0,10.67326 8.82674,19.5 19.5,19.5 h 126 c 10.67326,0 19.5,-8.82674 19.5,-19.5 V 47 c 0,-10.67326 -8.82674,-19.5 -19.5,-19.5 z m 0,15 h 126 c 2.62273,0 4.5,1.877273 4.5,4.5 v 86 c 0,2.62273 -1.87727,4.5 -4.5,4.5 H 27 c -2.622727,0 -4.5,-1.87727 -4.5,-4.5 V 47 c 0,-2.622727 1.877273,-4.5 4.5,-4.5 z"
-      id="FullFrame" />
-  </SvgIcon>
-);
 
 function FrameBar (props) {
   const classes = useStyles(props);
@@ -150,8 +123,12 @@ function FrameBar (props) {
           {props.frameTitleLabel}
         </Typography>
 
+        { (props.panelCustomShow && props.frameSize !== 0) && (
+          props.panelCustom
+        ) }
+
         {/* Input */}
-        { props.isShowSearch && (
+        { (props.searchInputShow && props.frameSize !== 0) && (
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
@@ -172,6 +149,8 @@ function FrameBar (props) {
         {/* FramePanel */}
         <ButtonGroup className={classes.framePanel} >
           {/* Enlarge */}
+          {/* Custom */}
+          { props.buttonCustomShow && props.buttonCustom }
           { props.buttonEnlargeShow && (
             <Button className={classes.Button} onClick={props.handleEnlarge} >
               { (props.frameSize === 1) ? (
@@ -191,8 +170,6 @@ function FrameBar (props) {
               ) }
             </Button> 
           ) }
-          {/* Custom */}
-          { clsx(props.isShowCustom) && props.buttonCustom }
 
         </ButtonGroup>
 
