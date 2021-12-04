@@ -6,19 +6,31 @@ import HeadContent from './components/Header/dummyHeader';
 import { demoFrameData } from './components/Main/dummyChildren';
 
 // Styles
-// import { makeStyles } from '@material-ui/core/styles';
-// import { createStyles } from '@mui/styles';
-// import MinimizeIcon from '@mui/icons-material/Minimize';
-// import logo from './logo.svg';
 import './App.css';
 
 // Hooks and Function
-// import clsx from 'clsx';
-// import PropTypes from 'prop-types';
 import { useState } from 'react';
+import { getFrameProps, checkFrameAllow } from './components/Main/FrameRenders';
 
 function App() {
-  const [ selectedFrame, setSelectedFrame ] = useState(0);
+  let frameRenderBase = {
+    data: demoFrameData,
+    allowSmall: checkFrameAllow(demoFrameData, 'small'),
+  };
+
+  const [ frameRenderRule, setFrameRenderRule ] = useState({
+    frameIndex: getFrameProps(frameRenderBase.data, 'index'),
+    display: getFrameProps(frameRenderBase.data, 'defaultDisplay'),
+    currentSelected: 0,
+    lastSelected: 1,
+  });
+
+  const setSelectedFrame = selectedNumber => setFrameRenderRule({
+    frameIndex: frameRenderRule.frameIndex,
+    display: frameRenderRule.display,
+    currentSelected: selectedNumber,
+    lastSelected: frameRenderRule.lastSelected,
+  });
 
   const handleCourseEnrollment = () => {
     setSelectedFrame(0);
@@ -47,8 +59,9 @@ function App() {
         callCourseTracking={handleCourseTracking}
       ></HeadContent>
       <MainContent
-        selectedFrame={selectedFrame}
-        frameData={demoFrameData}
+        frameRenderBaseObject={frameRenderBase}
+        frameRenderRuleState={frameRenderRule}
+        setFrameRenderRuleHook={setFrameRenderRule}
       ></MainContent>
     </div>
   );
