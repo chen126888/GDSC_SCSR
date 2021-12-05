@@ -11,8 +11,8 @@ import { createStyles } from '@mui/styles';
 
 // Hooks and Function
 import PropTypes from 'prop-types';
-import { useMemo } from 'react';
-import { renderFrames } from './FrameRenders';
+import { useMemo, useEffect } from 'react';
+import { renderFrames, selectFrame } from './FrameRenders';
 
 const useStyles = makeStyles(theme => createStyles({
   root: {
@@ -41,12 +41,35 @@ const useStyles = makeStyles(theme => createStyles({
 
 function MainContent(props) {
   const classes = useStyles(props);
+  let { frameIndex, frameDisplay, currentSelected, lastSelected, isSelectedEvent } = props.frameRenderRuleState;
+  let { data, allowSmall } = props.frameRenderBaseObject;
+  const frameRender = useMemo(() => (
+    renderFrames({
+      frameIndex: frameIndex, 
+      frameDisplay: frameDisplay, 
+      currentSelected: currentSelected,
+      data: data, 
+      allowSmall: allowSmall,
+      setFrameRenderRuleHook: props.setFrameRenderRuleHook,
+    })
+  ), [allowSmall, currentSelected, data, frameDisplay, frameIndex, props.setFrameRenderRuleHook]); 
+  // useMemo is not useEffect, but dependecy logic is same
 
-  const frameRender = useMemo(() => renderFrames({
-    frameRenderBaseObject: props.frameRenderBaseObject,
-    frameRenderRuleState: props.frameRenderRuleState,
-    setFrameRenderRuleHook: props.setFrameRenderRuleHook,
-  }), [props.frameRenderBaseObject, props.frameRenderRuleState, props.setFrameRenderRuleHook]);
+  useEffect(() => {
+    if ((currentSelected !== lastSelected) || isSelectedEvent) {
+      // console.log('Select Frame activated');
+      let tmp = selectFrame(frameIndex, frameDisplay, currentSelected, allowSmall);
+      props.setFrameRenderRuleHook({
+        frameIndex: tmp.frameIndexNext,
+        frameDisplay: tmp.frameDisplayNext,
+        currentSelected: lastSelected,
+        lastSelected: lastSelected,
+        isSelectedEvent: false,
+      });
+    } else {
+      // console.log('Not Select Frame activated');
+    }
+  }, [allowSmall, currentSelected, frameDisplay, frameIndex, isSelectedEvent, lastSelected, props])
 
   const handleWidthChange = () => {
     console.log('Panel Respond:', props.frameRenderRuleState);

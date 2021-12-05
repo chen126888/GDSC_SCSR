@@ -20,16 +20,18 @@ function App() {
 
   const [ frameRenderRule, setFrameRenderRule ] = useState({
     frameIndex: getFrameProps(frameRenderBase.data, 'index'),
-    display: getFrameProps(frameRenderBase.data, 'defaultDisplay'),
+    frameDisplay: getFrameProps(frameRenderBase.data, 'defaultDisplay'),
     currentSelected: 0,
     lastSelected: 1,
+    isSelectedEvent: false,
   });
 
   const setSelectedFrame = selectedNumber => setFrameRenderRule({
     frameIndex: frameRenderRule.frameIndex,
-    display: frameRenderRule.display,
+    frameDisplay: frameRenderRule.frameDisplay,
     currentSelected: selectedNumber,
     lastSelected: frameRenderRule.lastSelected,
+    isSelectedEvent: true,
   });
 
   const handleCourseEnrollment = () => {

@@ -76,11 +76,12 @@ const sizeEnlarge = (
 const selectFrame = (
   frameIndexArray, frameDisplayArray, selectedFrameNumber, allowSmallArray
 ) => {
-  console.log(frameIndexArray, frameDisplayArray, selectedFrameNumber, allowSmallArray)
+  // console.log(frameIndexArray, frameDisplayArray, selectedFrameNumber, allowSmallArray, "select");
   let leftFrameIndex = frameIndexArray[0];
   let rightFrameIndex = frameIndexArray[1];
   let frameDisplayNext = [...frameDisplayArray];
   let frameIndexNext = [...frameIndexArray];
+  // console.log(leftFrameIndex, rightFrameIndex, "select")
 
   if (selectedFrameNumber === leftFrameIndex) {
     // nothing to do
@@ -91,7 +92,6 @@ const selectFrame = (
     );
     frameIndexNext = tmp.frameIndexNext;
     frameDisplayNext = tmp.frameDisplayNext;
-
 
   } else {
     if (allowSmallArray.includes(leftFrameIndex)) {
@@ -116,33 +116,10 @@ const selectFrame = (
   return { frameIndexNext, frameDisplayNext }
 };
 
-const renderFrames = props => {
-  let { frameIndex, display, currentSelected, lastSelected } = props.frameRenderRuleState;
-  let { data, allowSmall } = props.frameRenderBaseObject;
-
-  console.log(
-    'Render Respond:',
-    frameIndex, display,
-    '->',
-    currentSelected
-  );
-  // handleSelect
-  if ((currentSelected === lastSelected)) {
-    console.log('Not Select Frame activated');
-    // selectedFrameNumber: props.selectedFrame,
-    // lastSelectedNumber: lastSelected,
-  } else {
-    console.log('Select Frame activated');
-
-    let tmp = selectFrame(frameIndex, display, currentSelected, allowSmall);
-    props.setFrameRenderRuleHook({
-      frameIndex: tmp.frameIndexNext,
-      display: tmp.frameDisplayNext,
-      currentSelected: currentSelected,
-      lastSelected: currentSelected,
-    });
-  };
-
+const renderFrames = ({
+  frameIndex, frameDisplay, currentSelected, data, allowSmall, setFrameRenderRuleHook
+})=> {
+  // console.log(frameIndex, frameDisplay, currentSelected, data, allowSmall, setFrameRenderRuleHook)
   return (
     frameIndex.map((indexForFrame, i) => {
       let {
@@ -150,37 +127,30 @@ const renderFrames = props => {
         buttonCustom, buttonCustomShow, searchInputShow,
         panelCustom, panelCustomShow,
       } = data[indexForFrame];
-      let sizeNumber = display[indexForFrame];
+      let sizeNumber = frameDisplay[indexForFrame];
 
       return (
         <Frame
           moveEnlarge={() => {
             // handleEnlarge
-            let tmp = sizeEnlarge(frameIndex, display, sizeNumber, allowSmall);
-            props.setFrameRenderRuleHook({
+            let tmp = sizeEnlarge(frameIndex, frameDisplay, sizeNumber, allowSmall);
+            setFrameRenderRuleHook({
               frameIndex: tmp.frameIndexNext,
-              display: tmp.frameDisplayNext,
-              currentSelected: indexForFrame,
+              frameDisplay: tmp.frameDisplayNext,
+              currentSelected: currentSelected,
               lastSelected: currentSelected,
+              isSelectedEvent: false,
             });
-            console.log(
-              'Enlarge Respond:',
-              props.frameIndexArray,
-              props.frameDisplayArray,
-              props.lastSelectedNumber,
-              '->',
-              props.selectedFrameNumber
-            );
-            console.log(tmp.frameIndexNext, tmp.frameDisplayNext);
           }}
           moveShrink={() => {
             // handleShrink
-            let tmp = sizeShrink(frameIndex, display, sizeNumber);
-            props.setFrameRenderRuleHook({
+            let tmp = sizeShrink(frameIndex, frameDisplay, sizeNumber);
+            setFrameRenderRuleHook({
               frameIndex: tmp.frameIndexNext,
-              display: tmp.frameDisplayNext,
-              currentSelected: indexForFrame,
+              frameDisplay: tmp.frameDisplayNext,
+              currentSelected: currentSelected,
               lastSelected: currentSelected,
+              isSelectedEvent: false,
             });
           }}
           index={indexForFrame}
