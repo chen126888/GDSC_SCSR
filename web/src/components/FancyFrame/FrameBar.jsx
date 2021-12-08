@@ -5,23 +5,21 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import Button from '@mui/material/Button';
 import Typography from "@material-ui/core/Typography";
 import InputBase from '@mui/material/InputBase';
+import Paper from '@mui/material/Paper';
 // Main Components
 
 // Styles
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import { createStyles } from '@mui/styles';
 import SearchIcon from '@mui/icons-material/Search';
-import { 
-  EnlargeIcon, ShrinkIcon, FullScreenIcon
-} from './FrameBarIcon';
+import { EnlargeIcon, ShrinkIcon, FullScreenIcon } from './FrameBarIcon';
+
 // Hooks and Function
-// import clsx from 'clsx';
-// import { useState, useEffect } from 'react';
+import { childPropsGiver } from './FrameFunctions';
 
 const useStyles = makeStyles( theme => createStyles({
   // When use Typescript: theme: Theme which imports from '@material-ui/styles'
   root: props => ({
-    // backgroundColor: theme.palette.primary.dark,
     // color: theme.palette.primary.contrastText,
     overflow: props.frameWidth < 30 ? 'hidden' : 'none',
     transition: theme.transitions.create("all", {
@@ -49,7 +47,7 @@ const useStyles = makeStyles( theme => createStyles({
     overflow: props.frameWidth < 30 ? 'hidden' : 'none',
     marginRight: 12,
     marginLeft: 12,
-    flexGrow: 1,
+    // flexGrow: 1,
     height: '100%',
     lineHeight: '100%',
     display: "flex",
@@ -104,6 +102,10 @@ const useStyles = makeStyles( theme => createStyles({
       width: '20ch',
     },
   },
+  panelCustom: props => ({
+    flexGrow: 1,
+
+  }),
 
 }) );
 
@@ -123,9 +125,14 @@ function FrameBar (props) {
           {props.frameTitleLabel}
         </Typography>
 
-        { (props.panelCustomShow && props.frameSize !== 0) && (
-          props.panelCustom
-        ) }
+        <Paper 
+          className={classes.panelCustom}
+          sx={{ borderRadius: 16,}}  
+        >
+          { (props.panelCustomShow && props.frameSize !== 0) && (
+            props.panelCustom
+          ) }
+        </Paper>
 
         {/* Input */}
         { (props.searchInputShow && props.frameSize !== 0) && (
@@ -148,8 +155,6 @@ function FrameBar (props) {
 
         {/* FramePanel */}
         <ButtonGroup className={classes.framePanel} >
-          {/* Enlarge */}
-          {/* Custom */}
           { props.buttonCustomShow && props.buttonCustom }
           { props.buttonEnlargeShow && (
             <Button className={classes.Button} onClick={props.handleEnlarge} >
@@ -160,7 +165,6 @@ function FrameBar (props) {
               ) }
             </Button> 
           ) }
-          {/* Shrink */}
           { props.buttonShrinkShow && (
             <Button className={classes.Button} onClick={props.handleShrink} >
             { (props.frameSize === 1) ? (

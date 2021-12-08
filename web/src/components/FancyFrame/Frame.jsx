@@ -86,11 +86,26 @@ function Frame(props) { // 0:smalll, 1:medium, 2:large
   const ChildWithProps = childPropsGiver(props.children, {
     frameSize: frameSize,
     spacingLv: props.spacingLv,
+    BarTaker: (
+      <FrameBar
+      buttonEnlargeShow={isEnlarge}
+      buttonShrinkShow={isShrink}
+      handleEnlarge={handleEnlarge}
+      handleShrink={handleShrink}
+
+      searchInputShow={props.searchInputShow}
+      buttonCustomShow={props.buttonCustomShow}
+      panelCustomShow={props.panelCustomShow}
+      frameTitleLabel={props.frameTitleLabel}
+
+      spacingLv={props.spacingLv}
+      frameSize={frameSize}
+      frameWidth={frameWidthGiver(frameSize)}
+    />
+    ),
+
   });
-  const ButtonWithProps = childPropsGiver(props.buttonCustom, {
-    className: classes.Button,
-    spacingLv: props.spacingLv,
-  });
+
   const MaintainInfo = props => (
     <Typography component="p" variant="body1">
       {' / isEnlarge: '}{String(isEnlarge)},
@@ -101,9 +116,11 @@ function Frame(props) { // 0:smalll, 1:medium, 2:large
       {' / allowMax: '}{String(props.allowMax)},
       {' / allowMin: '}{String(props.allowMin)},
       {' / index: '}{String(props.index)},
-      {' / label: '}{String(props.frameTitleLabel)},
-      {' / isShowSearch: '}{String(props.searchInputShow)},
-      {' / isShowCustom: '}{String(props.buttonCustomShow)},
+      {' / frameTitleLabel: '}{String(props.frameTitleLabel)},
+      {' / searchInputShow: '}{String(props.searchInputShow)},
+      {' / buttonCustomShow: '}{String(props.buttonCustomShow)},
+      {' / handleChange: '}
+      {' / valueControlbyChange: '}
     </Typography>
   );
 
@@ -120,23 +137,6 @@ function Frame(props) { // 0:smalll, 1:medium, 2:large
     >
       <Paper variant="outlined"
         className={classes.paper}>
-        <FrameBar
-          buttonEnlargeShow={isEnlarge}
-          buttonShrinkShow={isShrink}
-          handleEnlarge={handleEnlarge}
-          handleShrink={handleShrink}
-
-          searchInputShow={props.searchInputShow}
-          buttonCustomShow={props.buttonCustomShow}
-          buttonCustom={ButtonWithProps}
-          panelCustom={props.panelCustom}
-          panelCustomShow={props.panelCustomShow}
-          frameTitleLabel={props.frameTitleLabel}
-
-          spacingLv={props.spacingLv}
-          frameSize={frameSize}
-          frameWidth={frameWidthGiver(frameSize)}
-        />
         <MaintainInfo {...props} />
         {ChildWithProps}
       </Paper>
@@ -149,7 +149,13 @@ Frame.propTypes = {
   allowMin: PropTypes.number.isRequired,
   frameSize: PropTypes.number.isRequired,
   moveEnlarge: PropTypes.func.isRequired,
-  moveShrink: PropTypes.func.isRequired
+  moveShrink: PropTypes.func.isRequired,
+  isEnlarge: PropTypes.bool.isRequired,
+  isShrink: PropTypes.bool.isRequired,
+  index: PropTypes.number.isRequired,
+  frameTitleLabel: PropTypes.string.isRequired,
+  searchInputShow: PropTypes.bool.isRequired,
+  buttonCustomShow: PropTypes.bool.isRequired,
 };
 Frame.defaultProps = {
   moveEnlarge: () => console.log('Enlarge'),

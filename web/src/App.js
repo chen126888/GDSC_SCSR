@@ -10,14 +10,15 @@ import './App.css';
 
 // Hooks and Function
 import { useState } from 'react';
-import { getFrameProps, checkFrameAllow } from './components/Main/FrameRenders';
+import { getFrameProps, checkFrameAllow } from './components/FancyFrame/FrameRenders';
 
 function App() {
   let frameRenderBase = {
     data: demoFrameData,
     allowSmall: checkFrameAllow(demoFrameData, 'small'),
   };
-
+  
+  // SetState of Frame Logic
   const [ frameRenderRule, setFrameRenderRule ] = useState({
     frameIndex: getFrameProps(frameRenderBase.data, 'index'),
     frameDisplay: getFrameProps(frameRenderBase.data, 'defaultDisplay'),
@@ -34,6 +35,9 @@ function App() {
     isSelectedEvent: true,
   });
 
+  // SetState of children 
+
+  // HandleSelectFrameClick
   const handleCourseEnrollment = () => {
     setSelectedFrame(0);
     console.log('登記課表');

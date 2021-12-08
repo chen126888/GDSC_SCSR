@@ -2,25 +2,20 @@
 // import ButtonGroup from '@mui/material/ButtonGroup';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 
 // Main Components
-// import Frame from '../FancyFrame/Frame';
-// import CourseTabs from '../CourseSelecter/CourseSheetTab';
+import CourseTabs from '../CourseSelecter/CourseSheetTab';
 
 // Styles
 import { makeStyles } from '@material-ui/core/styles';
 import { createStyles } from '@mui/styles';
 import MinimizeIcon from '@mui/icons-material/Minimize';
-// import CloseIcon from '@mui/icons-material/Close';
-// import EditIcon from '@mui/icons-material/Edit';
-// import SaveIcon from '@mui/icons-material/Save';
-// import OpenInFullIcon from '@mui/icons-material/OpenInFull';
-// import SearchIcon from '@mui/icons-material/Search';
 
 // Hooks and Function
-// import clsx from 'clsx';
-// import PropTypes from 'prop-types';
-// import { useState, useCallback, useEffect } from 'react';
+import { childPropsGiver } from '../FancyFrame/FrameFunctions';
+import { useState } from 'react';
 
 // 1. Click Header buttons, if can shrink, then shrink, otherwise be repalced.
 // 2. Click enlarge button in small frame, 
@@ -42,20 +37,7 @@ const useStyles = makeStyles(theme => createStyles({
 
 }));
 
-const DummyFrameChild = props => {
-  // const classes = useStyles(props);
-  // console.log(props);
-  return (
-    <div key={props.keyForChild}>
-      It's dummy child
-      <Box>
-        AAAAAAAAAAAAAAAAAA 
-        size: {props.frameSize}
-        key = {props.keyForChild}
-      </Box>
-    </div>
-  )
-};
+// Children Component Example
 const DummybuttonCustom = props => {
   const classes = useStyles(props);
   return (
@@ -64,68 +46,116 @@ const DummybuttonCustom = props => {
     </Button>
   )
 };
+const DummyPanel = props => {
+  const classes = useStyles(props);
 
+  const a11yProps = (index) => ({
+    id: `scrollable-auto-tab-${index}`,
+    'aria-controls': `scrollable-auto-tabpanel-${index}`,
+  })
+
+  return (
+    <Tabs
+      value={props.value}
+      onChange={props.onChange}
+      textColor="secondary"
+      indicatorColor="secondary"
+      variant="scrollable"
+      scrollButtons="off"
+      aria-label="scrollable prevent tabs"
+    > {props.labels.map((tabLabel, i) => {
+      return (
+        <Tab
+          label={tabLabel}
+          aria-label={tabLabel}
+          className={classes.tabBarItem}
+          key={i}
+          wrapped
+          {...a11yProps(i)}
+        />
+      )
+    })
+      }
+    </Tabs>
+  );
+};
+const DummyFrameChild = props => {
+  const classes = useStyles(props);
+
+  const [value, setValue] = useState(0);
+  const handleChange = (event, newValue) => setValue(newValue);
+
+  const BarWithProps = childPropsGiver(props.BarTaker, {
+    buttonCustom: [(<DummybuttonCustom />), (<DummybuttonCustom />)],
+    panelCustom: (
+      <DummyPanel
+        onChange={handleChange}
+        handleCloseButton={props.handleCloseButton}
+        labels={['bla1', 'bla2']}
+        value={value}
+      />
+    ),
+  })
+
+  return (
+    <div key={props.keyForChild}>
+      {BarWithProps}
+      <Box>
+        It's dummy child content
+        size: {props.frameSize}
+        key = {props.keyForChild}
+      </Box>
+    </div>
+  )
+};
+
+// Pass chilren data
 var demoFrameData = [
   {
     label: '登記課表',
     defaultDisplay: 1,
     allowMax: 1,
     allowMin: 1,
-    children: [(
-      <DummyFrameChild key={1}/>
-    ), (
-      <DummyFrameChild key={2} />
-    )],
-    panelCustom: "dala, customPanel",
     panelCustomShow: true,
-    buttonCustom: [(<DummybuttonCustom />), (<DummybuttonCustom />)],
     buttonCustomShow: true,
     searchInputShow: false,
+    children:
+      <CourseTabs
+        contents={[(
+          <DummyFrameChild key={3} />
+        ), (
+          <DummyFrameChild key={4} />
+        )]}
+        labels={["1", "2"]}
+        key={1}
+      />,
   }, {
     label: '備選清單',
     defaultDisplay: 0,
     allowMax: 2,
     allowMin: 0,
-    children: [(
-      <DummyFrameChild key={1}/>
-    ), (
-      <DummyFrameChild key={2} />
-    )],
-    panelCustom: "dala, customPanel",
     panelCustomShow: true,
-    buttonCustom: [(<DummybuttonCustom />), (<DummybuttonCustom />)],
     buttonCustomShow: true,
     searchInputShow: true,
+    children: <DummyFrameChild key={1} />,
   }, {
     label: '課程搜尋',
     defaultDisplay: -1,
     allowMax: 2,
     allowMin: 1,
-    children: [(
-      <DummyFrameChild key={1}/>
-    ), (
-      <DummyFrameChild key={2} />
-    )],
-    panelCustom: "dala, customPanel",
     panelCustomShow: true,
-    buttonCustom: [(<DummybuttonCustom />), (<DummybuttonCustom />)],
     buttonCustomShow: true,
     searchInputShow: true,
+    children: <DummyFrameChild key={1} />,
   }, {
     label: '課程地圖',
     defaultDisplay: -1,
     allowMax: 1,
     allowMin: 0,
-    children: [(
-      <DummyFrameChild key={1}/>
-    ), (
-      <DummyFrameChild key={2} />
-    )],
-    panelCustom: "dala, customPanel",
     panelCustomShow: true,
-    buttonCustom: [(<DummybuttonCustom />), (<DummybuttonCustom />)],
     buttonCustomShow: true,
-    searchInputShow: false,
+    searchInputShow: true,
+    children: <DummyFrameChild key={1} />,
   },
 ];
 

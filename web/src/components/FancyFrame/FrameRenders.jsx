@@ -1,7 +1,7 @@
 // Material Components
 
 // Main Components
-import Frame from '../FancyFrame/Frame';
+import Frame from './Frame';
 
 // Styles
 

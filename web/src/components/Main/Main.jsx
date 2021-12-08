@@ -12,7 +12,7 @@ import { createStyles } from '@mui/styles';
 // Hooks and Function
 import PropTypes from 'prop-types';
 import { useMemo, useEffect } from 'react';
-import { renderFrames, selectFrame } from './FrameRenders';
+import { renderFrames, selectFrame } from '../FancyFrame/FrameRenders';
 
 const useStyles = makeStyles(theme => createStyles({
   root: {
@@ -20,6 +20,7 @@ const useStyles = makeStyles(theme => createStyles({
     height: '75vh',
     width: '100%',
     position: 'absolute',
+    overflow: 'hidden',
   },
   frameContainer: {
     top: 0,
