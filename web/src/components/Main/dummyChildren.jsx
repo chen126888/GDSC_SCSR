@@ -6,7 +6,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 
 // Main Components
-import CourseTabs from '../CourseSelecter/CourseSheetTab';
+import CourseTabs from '../CourseSelecter/CourseTab';
 
 // Styles
 import { makeStyles } from '@material-ui/core/styles';
@@ -17,23 +17,28 @@ import MinimizeIcon from '@mui/icons-material/Minimize';
 import { childPropsGiver } from '../FancyFrame/FrameFunctions';
 import { useState } from 'react';
 
-// 1. Click Header buttons, if can shrink, then shrink, otherwise be repalced.
-// 2. Click enlarge button in small frame, 
-//    left one enlarging to replace right one and call anther one small frame at oringnal palce.
-
-// 2: large: 備選清單、課程搜尋
-// 1: medium: 備選清單、課程搜尋、課程地圖、登記課表
-// 0: small: 備選清單、課程地圖
-
-// [ 0:'登記課表', 1:'備選清單', 2:'課程搜尋', 3:'課程地圖']
-
+/**
+ * - Size Change Rule 
+ * 1. Click Header buttons, if can shrink, then shrink, otherwise be repalced.
+ * 2. Click enlarge button in small frame,
+ *  left one enlarging to replace right one and call anther one small frame at oringnal palce.
+ * 
+ * - Size
+ * 2: large: 備選清單、課程搜尋
+ * 1: medium: 備選清單、課程搜尋、課程地圖、登記課表
+ * 0: small: 備選清單、課程地圖
+ * 
+ *  - Index of Each Frame
+ * [ 0:'登記課表', 1:'備選清單', 2:'課程搜尋', 3:'課程地圖' ] 
+ * 
+ */
 const useStyles = makeStyles(theme => createStyles({
   // When use Typescript: theme: Theme which imports from '@material-ui/styles'
-  Button: props => ({
-    borderTopLeftRadius: theme.spacing(props.spacingLv),
+  Button: {
+    // borderTopLeftRadius: theme.spacing(props.spacingLv),
     color: 'white !important',
     height: '100%',
-  }),
+  },
 
 }));
 
@@ -79,35 +84,35 @@ const DummyPanel = props => {
     </Tabs>
   );
 };
-const DummyFrameChild = props => {
-  const classes = useStyles(props);
+  const DummyFrameChild = props => {
+    const classes = useStyles(props);
 
-  const [value, setValue] = useState(0);
-  const handleChange = (event, newValue) => setValue(newValue);
+    const [value, setValue] = useState(0);
+    const handleChange = (event, newValue) => setValue(newValue);
 
-  const BarWithProps = childPropsGiver(props.BarTaker, {
-    buttonCustom: [(<DummybuttonCustom />), (<DummybuttonCustom />)],
-    panelCustom: (
-      <DummyPanel
-        onChange={handleChange}
-        handleCloseButton={props.handleCloseButton}
-        labels={['bla1', 'bla2']}
-        value={value}
-      />
-    ),
-  })
+    const BarWithProps = childPropsGiver(props.BarTaker, {
+      buttonCustom: [(<DummybuttonCustom {...props} key={1} />), (<DummybuttonCustom {...props} key={2} />)],
+      panelCustom: (
+        <DummyPanel
+          onChange={handleChange}
+          handleCloseButton={props.handleCloseButton}
+          labels={['bla1', 'bla2']}
+          value={value}
+        />
+      ),
+    })
 
-  return (
-    <div key={props.keyForChild}>
-      {BarWithProps}
-      <Box>
-        It's dummy child content
-        size: {props.frameSize}
-        key = {props.keyForChild}
-      </Box>
-    </div>
-  )
-};
+    return (
+      <div key={props.keyForChild}>
+        {BarWithProps}
+        <Box>
+          It's dummy child content
+          size: {props.frameSize}
+          key = {props.keyForChild}
+        </Box>
+      </div>
+    )
+  };
 
 // Pass chilren data
 var demoFrameData = [
@@ -122,9 +127,9 @@ var demoFrameData = [
     children:
       <CourseTabs
         contents={[(
-          <DummyFrameChild key={3} />
+          <DummyFrameChild key={1} />
         ), (
-          <DummyFrameChild key={4} />
+          <DummyFrameChild key={2} />
         )]}
         labels={["1", "2"]}
         key={1}

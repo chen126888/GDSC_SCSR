@@ -119,8 +119,6 @@ function Frame(props) { // 0:smalll, 1:medium, 2:large
       {' / frameTitleLabel: '}{String(props.frameTitleLabel)},
       {' / searchInputShow: '}{String(props.searchInputShow)},
       {' / buttonCustomShow: '}{String(props.buttonCustomShow)},
-      {' / handleChange: '}
-      {' / valueControlbyChange: '}
     </Typography>
   );
 
@@ -150,8 +148,6 @@ Frame.propTypes = {
   frameSize: PropTypes.number.isRequired,
   moveEnlarge: PropTypes.func.isRequired,
   moveShrink: PropTypes.func.isRequired,
-  isEnlarge: PropTypes.bool.isRequired,
-  isShrink: PropTypes.bool.isRequired,
   index: PropTypes.number.isRequired,
   frameTitleLabel: PropTypes.string.isRequired,
   searchInputShow: PropTypes.bool.isRequired,

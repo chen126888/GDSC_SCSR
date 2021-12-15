@@ -15,7 +15,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import { EnlargeIcon, ShrinkIcon, FullScreenIcon } from './FrameBarIcon';
 
 // Hooks and Function
-import { childPropsGiver } from './FrameFunctions';
 
 const useStyles = makeStyles( theme => createStyles({
   // When use Typescript: theme: Theme which imports from '@material-ui/styles'
@@ -113,7 +112,7 @@ function FrameBar (props) {
   const classes = useStyles(props);
 
   return (
-    <AppBar position='static' className={classes.root}>
+    <AppBar position='static' className={classes.root} >
       <Toolbar className={classes.toolbar}>
         {/* Title */}
         <Typography 

@@ -1,21 +1,13 @@
 // Material Components
-import Grid from '@mui/material/Grid';
-import AppBar from '@mui/material/AppBar';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import ButtonGroup from '@mui/material/ButtonGroup';
 import Button from '@mui/material/Button';
-import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
 // Main Components
-
+import TabLabel from './TabPart/TabLabel';
+import CourseTabBar from './TabPart/TabBar';
 // Styles
 import { makeStyles } from '@material-ui/core/styles';
 import { createStyles } from '@mui/styles';
-import CloseIcon from '@mui/icons-material/Close';
 import MinimizeIcon from '@mui/icons-material/Minimize';
 // Hooks and Function
-import clsx from 'clsx';
 import { useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { childPropsGiver } from '../FancyFrame/FrameFunctions';
@@ -46,7 +38,7 @@ const useStyles = makeStyles(theme => createStyles({
     fontSize: theme.spacing(3),
   },
   Button: props => ({
-    borderTopLeftRadius: theme.spacing(props.spacingLv),
+    // borderTopLeftRadius: theme.spacing(props.spacingLv),
     color: 'white !important',
     height: '100%',
   }),
@@ -62,64 +54,6 @@ const DummybuttonCustom = props => {
   )
 };
 
-// TabPanel for content
-const TabLabel = props => {
-  const { children, value, index, ...other } = props;
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`scrollable-auto-tabpanel-${index}`}
-      aria-labelledby={`scrollable-auto-tab-${index}`}
-      {...other}
-    >
-      {value === index && (<Box p={3}> {children} </Box>)}
-    </div>
-  );
-};
-TabLabel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
-};
-
-function CourseTabBar(props) {
-  const classes = useStyles(props);
-
-  const a11yProps = (index) => ({
-    id: `scrollable-auto-tab-${index}`,
-    'aria-controls': `scrollable-auto-tabpanel-${index}`,
-  })
-
-  return (
-    <Tabs
-      value={props.value}
-      onChange={props.onChange}
-      textColor="secondary"
-      indicatorColor="secondary"
-      variant="scrollable"
-      scrollButtons="off"
-      aria-label="scrollable prevent tabs"
-    > {props.labels.map((tabLabel, i) => {
-      return (
-        <Tab
-          label={tabLabel}
-          aria-label={tabLabel}
-          className={classes.tabBarItem}
-          key={i}
-          wrapped
-          {...a11yProps(i)}
-        />
-      )
-    })
-      }
-    </Tabs>
-  );
-};
-CourseTabBar.propTypes = {
-  labels: PropTypes.array.isRequired,
-};
-
 // Tabs
 function CourseTabs(props) {
   const classes = useStyles();
@@ -131,6 +65,8 @@ function CourseTabs(props) {
     <TabLabel value={value} index={i} key={i} >
       TabContent-{tabContent}
       s;s;s;s;-{i}
+      lalalal
+      {props.spacingLv}
     </TabLabel>
   ));
   const CourseTabContent = props => (
@@ -141,13 +77,14 @@ function CourseTabs(props) {
 
   // Bar Add
   const BarWithProps = childPropsGiver(props.BarTaker, {
-    buttonCustom: [(<DummybuttonCustom />), (<DummybuttonCustom />)],
+    buttonCustom: [(<DummybuttonCustom {...props} />), (<DummybuttonCustom {...props} />)],
     panelCustom: (
       <CourseTabBar
         onChange={handleChange}
         handleCloseButton={props.handleCloseButton}
         labels={props.labels}
         value={value}
+        spacingLv={props.spacingLv}
       />
     ),
   })
