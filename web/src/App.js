@@ -3,11 +3,9 @@
 // Main Components
 import MainContent from './components/Main/Main';
 import HeadContent from './components/Header/dummyHeader';
-import { demoFrameData } from './components/Main/dummyChildren';
-
+import { demoFrameData } from './components/Main/Children';
 // Styles
 import './App.css';
-
 // Hooks and Function
 import { useState } from 'react';
 import { getFrameProps, checkFrameAllow } from './components/FancyFrame/FrameRenders';

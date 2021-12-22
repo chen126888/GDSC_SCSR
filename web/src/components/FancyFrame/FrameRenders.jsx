@@ -2,7 +2,6 @@
 
 // Main Components
 import Frame from './Frame';
-
 // Styles
 
 // Hooks and Function
@@ -118,7 +117,7 @@ const selectFrame = (
 
 const renderFrames = ({
   frameIndex, frameDisplay, currentSelected, data, allowSmall, setFrameRenderRuleHook
-})=> {
+}) => {
   // console.log(frameIndex, frameDisplay, currentSelected, data, allowSmall, setFrameRenderRuleHook)
   return (
     frameIndex.map((indexForFrame, i) => {

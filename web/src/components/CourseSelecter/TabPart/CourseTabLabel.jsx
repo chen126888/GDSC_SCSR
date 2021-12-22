@@ -1,5 +1,5 @@
 // Material Components
-import Box from '@mui/material/Box';
+
 // Main Components
 
 // Styles
@@ -7,7 +7,6 @@ import Box from '@mui/material/Box';
 // Hooks and Function
 import PropTypes from 'prop-types';
 
-// TabPanel for content
 const TabLabel = props => {
   const { children, value, index, ...other } = props;
   return (
@@ -18,7 +17,7 @@ const TabLabel = props => {
       aria-labelledby={`scrollable-auto-tab-${index}`}
       {...other}
     >
-      {value === index && (<Box p={3}> {children} </Box>)}
+      {value === index && (children)}
     </div>
   );
 };

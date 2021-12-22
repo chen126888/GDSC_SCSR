@@ -12,7 +12,7 @@ import {
 } from 'react';
 
 const frameWidthGiver = size => (size >= 0 ? (-5 * size ** 2 + 45 * size + 30) : 0);
-// 0 -> 30, 1 -> 70, 2 -> 100
+/**  0 -> 30, 1 -> 70, 2 -> 100 */
 const frameEnlargePass = (allowMax, currentSize) => (currentSize < allowMax);
 const frameShrinkPass = (allowMin, currentSize) => (currentSize > allowMin);
 const childPropsGiver = (children, props) => Children.map(

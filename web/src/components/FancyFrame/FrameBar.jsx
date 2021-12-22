@@ -16,18 +16,18 @@ import { EnlargeIcon, ShrinkIcon, FullScreenIcon } from './FrameBarIcon';
 
 // Hooks and Function
 
-const useStyles = makeStyles( theme => createStyles({
-  // When use Typescript: theme: Theme which imports from '@material-ui/styles'
+const useStyles = makeStyles(theme => createStyles({
   root: props => ({
     // color: theme.palette.primary.contrastText,
     overflow: props.frameWidth < 30 ? 'hidden' : 'none',
     transition: theme.transitions.create("all", {
-      easing: theme.transitions.easing.sharp, 
+      easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
     borderTopRightRadius: theme.spacing(props.spacingLv),
     borderTopLeftRadius: theme.spacing(props.spacingLv),
-  }), 
+    flexGrow: 1,
+  }),
   toolbar: props => ({
     overflow: props.frameWidth < 30 ? 'hidden' : 'none',
     borderTopRightRadius: theme.spacing(props.spacingLv),
@@ -38,28 +38,23 @@ const useStyles = makeStyles( theme => createStyles({
     justifyContent: "center",
     verticalAlign: 'middle',
   }),
-  framePanel: props => ({
-    marginRight: theme.spacing(props.spacingLv),
-    height: '100%',
-  }),
   frameTitle: props => ({
     overflow: props.frameWidth < 30 ? 'hidden' : 'none',
     marginRight: 12,
     marginLeft: 12,
-    // flexGrow: 1,
-    height: '100%',
-    lineHeight: '100%',
+    flexGrow: 1,
     display: "flex",
     flexDirection: "column",
     justifyContent: "center"
   }),
   Button: props => ({
+    /** This control the button of size change */
     borderTopLeftRadius: theme.spacing(props.spacingLv),
     color: 'white !important',
     height: '100%',
   }),
-
   search: {
+    display: 'none',
     position: 'relative',
     margin: theme.spacing(1, 1, 1, 1),
     height: '80%',
@@ -97,44 +92,47 @@ const useStyles = makeStyles( theme => createStyles({
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create('width'),
     width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
+    [theme.breakpoints.up('md')]: { width: '20ch' },
   },
-  panelCustom: props => ({
-    flexGrow: 1,
-
+  panelFunction: props => ({
+    flexGrow: 2,
+  }),
+  panelButton: props => ({
+    marginRight: theme.spacing(props.spacingLv),
+    flexGrow: 0,
+    align: 'right',
   }),
 
-}) );
+}));
 
-function FrameBar (props) {
+function FrameBar(props) {
   const classes = useStyles(props);
 
   return (
     <AppBar position='static' className={classes.root} >
       <Toolbar className={classes.toolbar}>
         {/* Title */}
-        <Typography 
-          component="h2"
-          variant="h4" 
-          align='left'
+        <Typography
           className={classes.frameTitle}
+          component="h2"
+          variant="h4"
+          align='left'
         >
           {props.frameTitleLabel}
         </Typography>
 
-        <Paper 
-          className={classes.panelCustom}
-          sx={{ borderRadius: 16,}}  
-        >
-          { (props.panelCustomShow && props.frameSize !== 0) && (
-            props.panelCustom
-          ) }
-        </Paper>
+        {/* panelFunction or panelCustom */}
+        {(props.panelCustomShow && props.frameSize !== 0) && (
+          <Paper
+            className={classes.panelFunction}
+            sx={{ borderRadius: 16, }}
+          >
+            {props.panelCustom}
+          </Paper>
+        )}
 
         {/* Input */}
-        { (props.searchInputShow && props.frameSize !== 0) && (
+        {(props.searchInputShow && props.frameSize !== 0) && (
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
@@ -146,34 +144,35 @@ function FrameBar (props) {
                 input: classes.inputInput,
               }}
               inputProps={{ 'aria-label': 'search' }}
-              // onChange={handleInputChange}
-              // onKeyPress={handleKeyPress}
             />
           </div>
-        ) }
+        )}
 
         {/* FramePanel */}
-        <ButtonGroup className={classes.framePanel} >
-          { props.buttonCustomShow && props.buttonCustom }
-          { props.buttonEnlargeShow && (
+        <ButtonGroup 
+          className={classes.panelButton}
+        >
+          {props.buttonCustomShow && (
+            props.buttonCustom
+          )}
+          {props.buttonEnlargeShow && (
             <Button className={classes.Button} onClick={props.handleEnlarge} >
-              { (props.frameSize === 1) ? (
+              {(props.frameSize === 1) ? (
                 <FullScreenIcon fontSize='large' />
               ) : (
                 <EnlargeIcon fontSize='large' />
-              ) }
-            </Button> 
-          ) }
-          { props.buttonShrinkShow && (
+              )}
+            </Button>
+          )}
+          {props.buttonShrinkShow && (
             <Button className={classes.Button} onClick={props.handleShrink} >
-            { (props.frameSize === 1) ? (
+              {(props.frameSize === 1) ? (
                 <ShrinkIcon fontSize='large' />
               ) : (
                 <EnlargeIcon fontSize='large' />
-              ) }
-            </Button> 
-          ) }
-
+              )}
+            </Button>
+          )}
         </ButtonGroup>
 
       </Toolbar>

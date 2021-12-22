@@ -10,22 +10,6 @@ import { createStyles } from '@mui/styles';
 import PropTypes from 'prop-types';
 
 const useStyles = makeStyles(theme => createStyles({
-  tabBar: {
-    // backgroundColor: theme.palette.background.paper,
-    backgroundColor: 'white !important',
-    // color: theme.palette.primary.contrastText,
-    width: "50%",
-    borderTopLeftRadius: theme.spacing(2),
-    borderTopRightRadius: theme.spacing(2),
-  },
-  tabBarItem: {
-    fontSize: theme.spacing(3),
-  },
-  Button: props => ({
-    // borderTopLeftRadius: theme.spacing(props.spacingLv),
-    color: 'white !important',
-    height: '100%',
-  }),
 
 }));
 
