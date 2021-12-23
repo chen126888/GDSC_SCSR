@@ -4,7 +4,12 @@ import Box from '@mui/material/Box';
 // Main Components
 import TabLabel from './TabPart/CourseTabLabel';
 import CourseTabBar from './TabPart/CourseTabBar';
-// import SheetColumn from './CourseSheet';
+import DayColumn from './SheetPart/SheetColumn';
+import { 
+  generateArrange, calcCoursePosition, 
+  rowDisplayRuleBound, rowDisplayRuleRange,
+  dummyData, dummyAllData 
+} from './SheetPart/SheetColumnRender';
 // Styles
 import { makeStyles } from '@material-ui/core/styles';
 import { createStyles } from '@mui/styles';
@@ -96,7 +101,7 @@ function CourseTabs(props) {
           s;s;s;s;-{i}
           lalalal
           {props.spacingLv}
-          {/* <SheetColumn /> */}
+          <DayColumn />
         </TabLabel>
       ))}
     </Box>

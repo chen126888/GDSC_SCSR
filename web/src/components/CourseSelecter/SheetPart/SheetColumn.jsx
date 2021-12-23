@@ -26,25 +26,26 @@ import { generateArrange, calcCoursePosition, dummyData } from './SheetColumnRen
 const useStyles = makeStyles(theme => createStyles({
   dayRoot: props => ({
     position: "relative",
-    height: "100%",
-    width: "100%",
+    // height: "100%",
+    // width: "100%",
     display: 'flex',
-    flexGrow: 1, 
+    // flexGrow: 1, 
     flexDirection: 'row',
   }),
   daySubColumn: props => ({
     position: "relative",
-    height: "100%",
-    width: "100%",
-    display: 'flex',
-    flexGrow: 1, 
+    // height: "100%",
+    // width: "100%",
+    display: 'block',
+    // flexGrow: 1, 
+    // flexDirection: 'column',
   }),
 
 }));
 
 
 function DayColumn({
-  courseTodayData,
+  courseTodayData, firstClassTime
 }) {
   const classes = useStyles();
 
@@ -52,31 +53,39 @@ function DayColumn({
     let {
       stackArray, stackNum, scheduleArray, positionMatrix
     } = generateArrange(courseDataObject);
-    let configMatrix = calcCoursePosition(positionMatrix);
+    let configMatrix = calcCoursePosition(positionMatrix, firstClassTime);
     console.log(stackArray, stackNum, scheduleArray, positionMatrix, configMatrix);
-    let renderResult = configMatrix.map((column, i) => (
-      <Paper className={classes.daySubColumn} >
-        {column.map((courseConfig, j) => (
+
+    let renderResult = [];
+    configMatrix.forEach((column, i) => {
+      column.forEach((courseConfig, j) => {
+        renderResult.push(
           <CourseItem
+            key={`${i}-${j}`}
             courseTitle={courseDataObject[courseConfig.id].name}
             courseState={courseDataObject[courseConfig.id].state}
             coursePosition={courseConfig}
             courseInfo={courseDataObject[courseConfig.id].info}
+            courseTime={courseDataObject[courseConfig.id].time}
           />
-        ))}
-      </Paper>
-    ))
+        )
+      })
+    })
+    console.log(renderResult)
     return renderResult
   };
 
   return (
     <Paper className={classes.dayRoot} >
-      {renderColumn(dummyData)}
-      {/* at sheet */}
+      {renderColumn(courseTodayData)}
+
     </Paper>
   )
-
-
 };
+DayColumn.defaultProps = {
+  courseTodayData: dummyData,
+  firstClassTime: 6, 
+  lastClassTime: 21, 
+}
 
 export default DayColumn;

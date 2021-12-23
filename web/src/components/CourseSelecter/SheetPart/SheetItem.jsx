@@ -24,17 +24,21 @@ import PropTypes from 'prop-types';
 
 const useStylesForCourseItem = makeStyles(theme => createStyles({
   root: coursePosition => ({
-    position: "relative",
+    position: "absolute",
     // display: 'flex',
-    top: coursePosition.top,
-    left: coursePosition.left,
-    width: coursePosition.width,
-    height: coursePosition.height,
+    top: coursePosition.top*30,
+    left: coursePosition.left*100,
+    width: coursePosition.width*100,
+    height: coursePosition.height*30,
+    flexGrow: 1,
+    color: "white !important",
+    backgroundColor: "black !important",
+    // border: "3px solid red",
   })
 }));
 
 function CourseItem({
-  courseTitle, courseState, coursePosition, courseInfo
+  courseTitle, courseState, coursePosition, courseInfo, courseTime
 }) {
   const classes = useStylesForCourseItem(coursePosition);
   console.log(coursePosition)
@@ -45,7 +49,7 @@ function CourseItem({
 
   return (
     <Paper className={classes.root}>
-      <Button
+      {/* <Button
         onClick={handleOpen}
         className={classes.itemButton}
       >
@@ -61,7 +65,7 @@ function CourseItem({
               <Typography>
                 bala
               </Typography>
-              {String(courseInfo)}
+              {String(courseTime)}
             </Grid>
             <Grid xs={4}>
               icon components
@@ -69,8 +73,8 @@ function CourseItem({
             </Grid>
           </Grid>
         </Paper>
-      </Button>
-
+      </Button> */}
+        {String(courseTime)}{" "}{String(coursePosition.top)}
       <Modal
         open={open}
         onClose={handleClose}

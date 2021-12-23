@@ -55,7 +55,9 @@ const generateArrange = courseDataObject => {
   return { stackArray, stackNum, scheduleArray, positionMatrix }
 };
 
-const calcCoursePosition = positionMatrix => {
+const calcCoursePosition = (
+  positionMatrix, firstClassTime, stackArray
+) => {
   let configMatrix = positionMatrix.map((stack, i) => {
     let unitConfig = {
       "id": -1,
@@ -68,10 +70,9 @@ const calcCoursePosition = positionMatrix => {
     let indexConfig = 0;
     let lastIndex = -1;
     stack.forEach((courseIndex, i) => {
+      configColumn[indexConfig]["top"] = i;
       if (courseIndex === lastIndex) {
-        if (courseIndex === -1) {
-          configColumn[indexConfig]["top"] += 1;
-        } else {
+        if (courseIndex !== -1) {
           configColumn[indexConfig]["height"] += 1;
           configColumn[indexConfig]["id"] = courseIndex;
         }
@@ -80,10 +81,7 @@ const calcCoursePosition = positionMatrix => {
           indexConfig += 1;
           configColumn[indexConfig] = { ...unitConfig };
         }
-
-        if (courseIndex === -1) {
-          configColumn[indexConfig]["top"] += 1;
-        } else {
+        if (courseIndex !== -1) {
           configColumn[indexConfig]["height"] += 1;
           configColumn[indexConfig]["id"] = courseIndex;
         }
@@ -91,6 +89,10 @@ const calcCoursePosition = positionMatrix => {
       lastIndex = courseIndex;
     });
     configColumn.pop();
+    configColumn.forEach((config, i) => {
+      config["top"] -= config["height"] + firstClassTime
+    })
+    console.log(configColumn)
     return configColumn
   });
   return configMatrix
@@ -121,6 +123,8 @@ const rowDisplayRuleRange = ({
 }) => Array.from({ length: 24 }, (e, i) => (
   (firstClassTime <= i) && (i <= lastClassTime)
 ));
+
+
 
 let dummyData = [
   {
@@ -193,7 +197,7 @@ let dummyAllData = {
         "note": "say bla",
       }
     },
-  ], 
+  ],
   "Tue": [
     {
       "name": "blabla1",
@@ -232,20 +236,20 @@ let dummyAllData = {
   "Wed": [
 
   ],
-  "Thu":[
+  "Thu": [
 
   ],
-  "Fri":[
+  "Fri": [
   ],
-  "Sat":[
+  "Sat": [
   ],
-  "Sun":[
+  "Sun": [
 
   ]
 }
 
-export { 
-  generateArrange, calcCoursePosition, 
+export {
+  generateArrange, calcCoursePosition,
   rowDisplayRuleBound, rowDisplayRuleRange,
-  dummyData, dummyAllData 
+  dummyData, dummyAllData
 };
