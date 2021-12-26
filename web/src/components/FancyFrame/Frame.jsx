@@ -16,12 +16,10 @@ import {
 
 const useStyles = makeStyles(theme => createStyles({
   root: props => ({
-    top: 0,
     width: `${props.frameWidth}%`,
-    // height: '100%',
+    flexGrow: 1,
     // backgroundColor: theme.palette.primary.dark,
     // color: theme.palette.primary.contrastText,
-    zIndex: props.zIndex,
     overflow: 'hidden',
     transition: theme.transitions.create("all", {
       easing: theme.transitions.easing.sharp,
@@ -43,7 +41,7 @@ const useStyles = makeStyles(theme => createStyles({
     flexGrow: 1,
     display: 'flex',
     flexDirection: 'column',
-    // height: '100%', DO NOT SET THIS
+
   }),
   maintainInfo: {
     display: 'none',
@@ -62,7 +60,6 @@ function Frame(props) {
     spacingLv: props.spacingLv,
     frameSize: frameSize,
     frameWidth: frameWidthGiver(frameSize),
-    // zIndex: 1011,
   };
   const classes = useStyles(propsStyled);
 
@@ -128,10 +125,12 @@ function Frame(props) {
     <Box
       className={classes.root}
       key={props.indexForFrame}
+      component="section"
     >
       <Paper
         variant="outlined"
         className={classes.paper}
+        component="container"
       >
         <MaintainInfo {...props} />
         {ChildWithProps}

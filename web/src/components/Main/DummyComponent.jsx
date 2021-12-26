@@ -53,7 +53,7 @@ const DummyPanel = props => {
       textColor="secondary"
       indicatorColor="secondary"
       variant="scrollable"
-      scrollButtons="off"
+      scrollButtons="auto"
       aria-label="scrollable prevent tabs"
     > {props.labels.map((tabLabel, i) => {
       return (

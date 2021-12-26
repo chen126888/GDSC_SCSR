@@ -14,34 +14,32 @@ import Modal from '@mui/material/Modal';
 // Styles
 import { makeStyles } from '@material-ui/core/styles';
 import { createStyles } from '@mui/styles';
-import CloseIcon from '@mui/icons-material/Close';
-import MinimizeIcon from '@mui/icons-material/Minimize';
-
 // Hooks and Function
-import clsx from 'clsx';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 const useStylesForCourseItem = makeStyles(theme => createStyles({
-  root: coursePosition => ({
+  root: (itemConfig) => ({
     position: "absolute",
-    // display: 'flex',
-    top: coursePosition.top*30,
-    left: coursePosition.left*100,
-    width: coursePosition.width*100,
-    height: coursePosition.height*30,
+    top: `${itemConfig.top * itemConfig.itemHeight}vh`,
+    left: `${itemConfig.left * itemConfig.width}%`,
+    width: `${(itemConfig.isFullWidth ? 100 : itemConfig.width)}%`,
+    height: `${itemConfig.height * itemConfig.itemHeight}vh`,
     flexGrow: 1,
     color: "white !important",
     backgroundColor: "black !important",
     // border: "3px solid red",
+    zIndex: 2000,
+    "&:hover": {
+      zIndex: 2200,
+    }
   })
 }));
 
 function CourseItem({
-  courseTitle, courseState, coursePosition, courseInfo, courseTime
+  courseTitle, courseState, itemConfig, courseInfo, courseTime
 }) {
-  const classes = useStylesForCourseItem(coursePosition);
-  console.log(coursePosition)
+  const classes = useStylesForCourseItem(itemConfig);
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -68,13 +66,13 @@ function CourseItem({
               {String(courseTime)}
             </Grid>
             <Grid xs={4}>
-              icon components
-              {courseState}
             </Grid>
           </Grid>
         </Paper>
       </Button> */}
-        {String(courseTime)}{" "}{String(coursePosition.top)}
+      {String(courseTime)}{"/"}
+      {String(itemConfig.top)}{"/"}
+      {String(itemConfig.isFullWidth)}{"/"}
       <Modal
         open={open}
         onClose={handleClose}
@@ -99,6 +97,13 @@ function CourseItem({
       </Modal>
     </Paper>
   );
+};
+CourseItem.propTypes = {
+  courseTitle: PropTypes.string.isRequired,
+  courseState: PropTypes.string.isRequired,
+  itemConfig: PropTypes.object.isRequired,
+  courseInfo: PropTypes.object.isRequired,
+  courseTime: PropTypes.array.isRequired,
 };
 
 export default CourseItem;

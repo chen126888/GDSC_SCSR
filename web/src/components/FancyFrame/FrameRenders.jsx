@@ -176,4 +176,7 @@ const renderFrames = ({
   )
 };
 
-export { getFrameProps, checkFrameAllow, sizeShrink, sizeEnlarge, selectFrame, renderFrames }
+export { 
+  getFrameProps, checkFrameAllow, 
+  sizeShrink, sizeEnlarge, selectFrame, renderFrames 
+}

@@ -4,12 +4,8 @@ import Box from '@mui/material/Box';
 // Main Components
 import TabLabel from './TabPart/CourseTabLabel';
 import CourseTabBar from './TabPart/CourseTabBar';
-import DayColumn from './SheetPart/SheetColumn';
-import { 
-  generateArrange, calcCoursePosition, 
-  rowDisplayRuleBound, rowDisplayRuleRange,
-  dummyData, dummyAllData 
-} from './SheetPart/SheetColumnRender';
+import { dummyWeekData } from './SheetPart/SheetColumnRender';
+import Sheet from "./SheetPart/Sheet";
 // Styles
 import { makeStyles } from '@material-ui/core/styles';
 import { createStyles } from '@mui/styles';
@@ -21,6 +17,7 @@ import { childPropsGiver } from '../FancyFrame/FrameFunctions';
 
 const useStyles = makeStyles(theme => createStyles({
   tabBar: {
+    flexGrow: 0.1,
     // backgroundColor: theme.palette.background.paper,
     backgroundColor: 'white !important',
     // color: theme.palette.primary.contrastText,
@@ -31,17 +28,31 @@ const useStyles = makeStyles(theme => createStyles({
     fontSize: theme.spacing(3),
   },
   tabContainer: {
-    height: 'calc(100% - 5vh)',
-    width: "100%",
+    flexGrow: 0.9,
+    overflowY: "scroll",
+    overflowX: "auto",
+    /** scrollbar hidden */
+    "-ms-overflow-style": 'none',
+    "scrollbar-width": 'none',
+    "&::-webkit-scrollbar": {
+      display: "none"
+    },
+    borderBottomLeftRadius: theme.spacing(2),
+    borderBottomRightRadius: theme.spacing(2),
   },
-  tabContent: {
-    height: 'calc(100%)',
+  tabFrame: {
+    height: '100%',
     width: "100%",
-    // display: 'flex',
-    // flexGrow: 1,
-    // flexDirection: 'row',
     margin: 0,
     padding: 0
+  },
+  tabContent: {
+    // height: '100%',
+    // width: "100%",
+    display: 'flex',
+    flexDirection: 'column',
+    margin: 0,
+    padding: 0,
   },
   Button: props => ({
     // borderTopLeftRadius: theme.spacing(props.spacingLv),
@@ -60,7 +71,7 @@ const DummybuttonCustom = props => {
   )
 };
 
-  // Tabs
+// Tabs
 function CourseTabs(props) {
   const classes = useStyles(props);
 
@@ -70,8 +81,8 @@ function CourseTabs(props) {
   // Bar Add
   const TabBarWithProps = childPropsGiver(props.BarTaker, {
     buttonCustom: [
-      (<DummybuttonCustom {...props} />),
-      (<DummybuttonCustom {...props} />)
+      (<DummybuttonCustom key={0} {...props} />),
+      (<DummybuttonCustom key={1} {...props} />)
     ],
     panelCustom: (
       <CourseTabBar
@@ -86,22 +97,21 @@ function CourseTabs(props) {
   })
 
   const TabMain = (
-    <Box 
-      component="main" 
-      className={classes.tabContainer} 
+    <Box
+      component="main"
+      className={classes.tabContainer}
     >
       {props.contents.map((tabContent, i) => (
         <TabLabel
           value={value}
           index={i}
           key={i}
-          className={classes.tabContent}
+          className={classes.tabFrame}
         >
-          TabContent-{tabContent}
-          s;s;s;s;-{i}
-          lalalal
-          {props.spacingLv}
-          <DayColumn />
+          <Sheet
+            courseWeekData={dummyWeekData}
+            itemHeight={8}
+          />
         </TabLabel>
       ))}
     </Box>

@@ -1,91 +1,73 @@
 // Material Components
-import Grid from '@mui/material/Grid';
-import Card from '@mui/material/Card';
-import CardHeader from "@mui/material/CardHeader";
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
 // Main Components
-import CourseItem from './SheetItem';
+import SheetRow from './SheetRow';
 // Styles
 import { makeStyles } from '@material-ui/core/styles';
 import { createStyles } from '@mui/styles';
-import CloseIcon from '@mui/icons-material/Close';
-import MinimizeIcon from '@mui/icons-material/Minimize';
-
 // Hooks and Function
-import clsx from 'clsx';
-import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { generateArrange, calcCoursePosition, dummyData } from './SheetColumnRender';
+import { dummyData } from './SheetColumnRender';
 
 const useStyles = makeStyles(theme => createStyles({
   dayRoot: props => ({
     position: "relative",
-    // height: "100%",
-    // width: "100%",
+    height: `${props.itemHeight * (props.itemNum + 0.5)}vh`,
     display: 'flex',
-    // flexGrow: 1, 
-    flexDirection: 'row',
+    flexGrow: 1,
+    flexDirection: 'column',
+    // zIndex: 2000,
+    // "&:hover": {
+    //   zIndex: 2100,
+    // }
   }),
-  daySubColumn: props => ({
+  dayContent: props => ({
     position: "relative",
-    // height: "100%",
-    // width: "100%",
-    display: 'block',
-    // flexGrow: 1, 
-    // flexDirection: 'column',
-  }),
+    height: `${props.itemHeight * (props.itemNum + 0.5)}vh`,
+    width: "100%",
+    display: 'flex',
 
+    flexDirection: 'column',
+  }),
 }));
 
-
 function DayColumn({
-  courseTodayData, firstClassTime
+  today, itemHeight, renderResult, firstClassTime, lastClassTime,
 }) {
-  const classes = useStyles();
 
-  const renderColumn = courseDataObject => {
-    let {
-      stackArray, stackNum, scheduleArray, positionMatrix
-    } = generateArrange(courseDataObject);
-    let configMatrix = calcCoursePosition(positionMatrix, firstClassTime);
-    console.log(stackArray, stackNum, scheduleArray, positionMatrix, configMatrix);
-
-    let renderResult = [];
-    configMatrix.forEach((column, i) => {
-      column.forEach((courseConfig, j) => {
-        renderResult.push(
-          <CourseItem
-            key={`${i}-${j}`}
-            courseTitle={courseDataObject[courseConfig.id].name}
-            courseState={courseDataObject[courseConfig.id].state}
-            coursePosition={courseConfig}
-            courseInfo={courseDataObject[courseConfig.id].info}
-            courseTime={courseDataObject[courseConfig.id].time}
-          />
-        )
-      })
-    })
-    console.log(renderResult)
-    return renderResult
-  };
+  let itemNum = (lastClassTime - firstClassTime + 1);
+  const classes = useStyles({
+    itemHeight: itemHeight,
+    itemNum: (lastClassTime - firstClassTime + 1),
+  });
 
   return (
-    <Paper className={classes.dayRoot} >
-      {renderColumn(courseTodayData)}
-
-    </Paper>
+    <Box className={classes.dayRoot} >
+      <Box className={classes.dayContent} >
+        {renderResult}
+        {Array.from({ length: itemNum }, (e, i) => (
+          <SheetRow 
+            itemHeight={itemHeight}
+            rowIndex={""} 
+          />
+        ))}
+      </Box >
+    </Box >
   )
 };
 DayColumn.defaultProps = {
-  courseTodayData: dummyData,
-  firstClassTime: 6, 
-  lastClassTime: 21, 
-}
+  today: "weekend",
+  itemHeight: 8,
+  renderResult: dummyData,
+  firstClassTime: 8,
+  lastClassTime: 21,
+};
+DayColumn.propTypes = {
+  today: PropTypes.string.isRequired,
+  itemHeight: PropTypes.number.isRequired,
+  renderResult: PropTypes.array.isRequired,
+  firstClassTime: PropTypes.number.isRequired,
+  lastClassTime: PropTypes.number.isRequired,
+};
 
 export default DayColumn;
