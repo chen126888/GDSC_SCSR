@@ -31,6 +31,21 @@ const useStyles = makeStyles(theme => createStyles({
 
 }));
 
+function QuickBox(props){ 
+  return (
+    <Box
+      sx={{
+        flexGrow: props.flexGrowNum,
+        flexDirection: 'row',
+        display: 'flex',
+      }}
+      component={props.component}
+    >
+      {props.children}
+    </Box>
+  )
+};
+
 function Sheet({
   courseWeekData, itemHeight,
 }) {
@@ -94,51 +109,37 @@ function Sheet({
     });
 
     return [
-      <Box sx={{
-        display: 'flex',
-      }} >
+      <QuickBox key={"header"} component={"header"} >
         <SheetRow
           itemHeight={itemHeight * 0.5}
           rowIndex={""}
           variant={"title"}
           flexGrow={0.4}
+          key={0}
         />
-        <Box
-          sx={{
-            flexGrow: flexGrowNum,
-            flexDirection: 'row',
-            display: 'flex',
-          }}
-        >
+        <QuickBox flexGrowNum={flexGrowNum} >
           {weekDays.map((weekKey, i) => (
             <SheetRow
               itemHeight={itemHeight * 0.5}
               rowIndex={weekDaysZh[weekKey]}
               variant={"title"}
               flexGrow={0.4}
+              key={i}
             />
           ))}
-        </Box>
-      </Box>
+        </QuickBox>
+      </QuickBox>
       ,
-      <Box sx={{
-        display: 'flex',
-      }} >
+      <QuickBox key={"main"} component={"main"} >
         <RowTitle
           itemHeight={itemHeight}
           firstClassTime={firstClassTime}
           lastClassTime={lastClassTime}
         />
-        <Box
-          sx={{
-            flexGrow: flexGrowNum,
-            flexDirection: 'row',
-            display: 'flex',
-          }}
-        >
+        <QuickBox flexGrowNum={flexGrowNum} >
           {columnExport}
-        </Box>
-      </Box>
+        </QuickBox>
+      </QuickBox>
     ]
   }, [courseWeekData, itemHeight]);
 

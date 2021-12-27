@@ -17,6 +17,7 @@ import { childPropsGiver } from '../FancyFrame/FrameFunctions';
 
 const useStyles = makeStyles(theme => createStyles({
   tabBar: {
+    position: 'fixed',
     flexGrow: 0.1,
     // backgroundColor: theme.palette.background.paper,
     backgroundColor: 'white !important',
@@ -27,7 +28,7 @@ const useStyles = makeStyles(theme => createStyles({
   tabBarItem: {
     fontSize: theme.spacing(3),
   },
-  tabContainer: {
+  tabMain: {
     flexGrow: 0.9,
     overflowY: "scroll",
     overflowX: "auto",
@@ -39,6 +40,8 @@ const useStyles = makeStyles(theme => createStyles({
     },
     borderBottomLeftRadius: theme.spacing(2),
     borderBottomRightRadius: theme.spacing(2),
+    padding: theme.spacing(2),
+    boxShadow: `inset ${theme.spacing(0)}px ${theme.spacing(1)}px ${theme.spacing(1)}px rgba(0, 0, 0, 0.25)`,
   },
   tabFrame: {
     height: '100%',
@@ -72,25 +75,26 @@ const DummybuttonCustom = props => {
 };
 
 // Tabs
-function CourseTabs(props) {
-  const classes = useStyles(props);
+function CourseTabs({
+  BarTaker
+}) {
+  const classes = useStyles();
+  const [ labels, setLables ] = useState([1,2]);
 
   const [value, setValue] = useState(0);
   const handleChange = (event, newValue) => setValue(newValue);
 
   // Bar Add
-  const TabBarWithProps = childPropsGiver(props.BarTaker, {
+  const TabBarWithProps = childPropsGiver(BarTaker, {
     buttonCustom: [
-      (<DummybuttonCustom key={0} {...props} />),
-      (<DummybuttonCustom key={1} {...props} />)
+      (<DummybuttonCustom key={0} />),
+      (<DummybuttonCustom key={1} />)
     ],
     panelCustom: (
       <CourseTabBar
         onChange={handleChange}
-        handleCloseButton={props.handleCloseButton}
-        labels={props.labels}
+        labels={labels}
         value={value}
-        spacingLv={props.spacingLv}
         className={classes.tabBar}
       />
     ),
@@ -99,9 +103,9 @@ function CourseTabs(props) {
   const TabMain = (
     <Box
       component="main"
-      className={classes.tabContainer}
+      className={classes.tabMain}
     >
-      {props.contents.map((tabContent, i) => (
+      {labels.map((tabContent, i) => (
         <TabLabel
           value={value}
           index={i}
@@ -123,10 +127,6 @@ function CourseTabs(props) {
       {TabMain}
     </Fragment>
   );
-};
-CourseTabs.propTypes = {
-  contents: PropTypes.array.isRequired,
-  labels: PropTypes.array.isRequired,
 };
 
 export default CourseTabs;

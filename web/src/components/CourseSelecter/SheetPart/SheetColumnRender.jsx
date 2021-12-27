@@ -161,26 +161,22 @@ let dummyData = [
     "info": {
       "teacher": "Prof.blabla",
       "note": "say bla",
-    }
+      course_id: "",
+      instructor: "",
+      type:"",
+      unit:"",
+      credit:"",
+      alteration:"",
+      remain:"",
+      location:"",
+      language:"",
+      enrollment:"",
+      syllabus:"",
+      regulation:"",
+    },
   }, {
     "name": "blabla2",
     "time": [9, 10, 11],
-    "state": "selected",
-    "info": {
-      "teacher": "Prof.blabla",
-      "note": "say bla",
-    }
-  }, {
-    "name": "blabla3",
-    "time": [11, 12, 13],
-    "state": "selected",
-    "info": {
-      "teacher": "Prof.blabla",
-      "note": "say bla",
-    }
-  }, {
-    "name": "blabla4",
-    "time": [20, 21],
     "state": "selected",
     "info": {
       "teacher": "Prof.blabla",
@@ -198,6 +194,18 @@ let dummyWeekData = {
       "info": {
         "teacher": "Prof.blabla",
         "note": "say bla",
+        course_id: "",
+        instructor: "",
+        type:"",
+        unit:"",
+        credit:"",
+        alteration:"",
+        remain:"",
+        location:"",
+        language:"",
+        enrollment:"",
+        syllabus:"",
+        regulation:"",
       }
     }, {
       "name": "blabla2",
@@ -206,6 +214,18 @@ let dummyWeekData = {
       "info": {
         "teacher": "Prof.blabla",
         "note": "say bla",
+        course_id: "",
+        instructor: "",
+        type:"",
+        unit:"",
+        credit:"",
+        alteration:"",
+        remain:"",
+        location:"",
+        language:"",
+        enrollment:"",
+        syllabus:"",
+        regulation:"",
       }
     }, {
       "name": "blabla3",
@@ -214,6 +234,18 @@ let dummyWeekData = {
       "info": {
         "teacher": "Prof.blabla",
         "note": "say bla",
+        course_id: "",
+        instructor: "",
+        type:"",
+        unit:"",
+        credit:"",
+        alteration:"",
+        remain:"",
+        location:"",
+        language:"",
+        enrollment:"",
+        syllabus:"",
+        regulation:"",
       }
     }, {
       "name": "blabla4",
@@ -222,6 +254,18 @@ let dummyWeekData = {
       "info": {
         "teacher": "Prof.blabla",
         "note": "say bla",
+        course_id: "",
+        instructor: "",
+        type:"",
+        unit:"",
+        credit:"",
+        alteration:"",
+        remain:"",
+        location:"",
+        language:"",
+        enrollment:"",
+        syllabus:"",
+        regulation:"",
       }
     },
   ],
@@ -233,6 +277,18 @@ let dummyWeekData = {
       "info": {
         "teacher": "Prof.blabla",
         "note": "say bla",
+        course_id: "",
+        instructor: "",
+        type:"",
+        unit:"",
+        credit:"",
+        alteration:"",
+        remain:"",
+        location:"",
+        language:"",
+        enrollment:"",
+        syllabus:"",
+        regulation:"",
       }
     }, {
       "name": "blabla2",
@@ -241,6 +297,18 @@ let dummyWeekData = {
       "info": {
         "teacher": "Prof.blabla",
         "note": "say bla",
+        course_id: "",
+        instructor: "",
+        type:"",
+        unit:"",
+        credit:"",
+        alteration:"",
+        remain:"",
+        location:"",
+        language:"",
+        enrollment:"",
+        syllabus:"",
+        regulation:"",
       }
     }, {
       "name": "blabla3",
@@ -249,6 +317,18 @@ let dummyWeekData = {
       "info": {
         "teacher": "Prof.blabla",
         "note": "say bla",
+        course_id: "",
+        instructor: "",
+        type:"",
+        unit:"",
+        credit:"",
+        alteration:"",
+        remain:"",
+        location:"",
+        language:"",
+        enrollment:"",
+        syllabus:"",
+        regulation:"",
       }
     }, {
       "name": "blabla4",
@@ -257,6 +337,18 @@ let dummyWeekData = {
       "info": {
         "teacher": "Prof.blabla",
         "note": "say bla",
+        course_id: "",
+        instructor: "",
+        type:"",
+        unit:"",
+        credit:"",
+        alteration:"",
+        remain:"",
+        location:"",
+        language:"",
+        enrollment:"",
+        syllabus:"",
+        regulation:"",
       }
     },
   ],
@@ -268,6 +360,18 @@ let dummyWeekData = {
       "info": {
         "teacher": "Prof.blabla",
         "note": "say bla",
+        course_id: "",
+        instructor: "",
+        type:"",
+        unit:"",
+        credit:"",
+        alteration:"",
+        remain:"",
+        location:"",
+        language:"",
+        enrollment:"",
+        syllabus:"",
+        regulation:"",
       }
     },
   ],
@@ -281,6 +385,18 @@ let dummyWeekData = {
       "info": {
         "teacher": "Prof.blabla",
         "note": "say bla",
+        course_id: "",
+        instructor: "",
+        type:"",
+        unit:"",
+        credit:"",
+        alteration:"",
+        remain:"",
+        location:"",
+        language:"",
+        enrollment:"",
+        syllabus:"",
+        regulation:"",
       }
     },
   ],
@@ -292,6 +408,18 @@ let dummyWeekData = {
       "info": {
         "teacher": "Prof.blabla",
         "note": "say bla",
+        course_id: "",
+        instructor: "",
+        type:"",
+        unit:"",
+        credit:"",
+        alteration:"",
+        remain:"",
+        location:"",
+        language:"",
+        enrollment:"",
+        syllabus:"",
+        regulation:"",
       }
     },
   ],

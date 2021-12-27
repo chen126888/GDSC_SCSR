@@ -16,10 +16,10 @@ const useStyles = makeStyles(theme => createStyles({
     display: 'flex',
     flexGrow: 1,
     flexDirection: 'column',
-    // zIndex: 2000,
-    // "&:hover": {
-    //   zIndex: 2100,
-    // }
+    zIndex: 2000,
+    "&:hover": {
+      zIndex: 2100,
+    }
   }),
   dayContent: props => ({
     position: "relative",
@@ -49,6 +49,7 @@ function DayColumn({
           <SheetRow 
             itemHeight={itemHeight}
             rowIndex={""} 
+            key={i}
           />
         ))}
       </Box >

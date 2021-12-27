@@ -21,13 +21,14 @@ import PropTypes from 'prop-types';
 const useStylesForCourseItem = makeStyles(theme => createStyles({
   root: (itemConfig) => ({
     position: "absolute",
-    top: `${itemConfig.top * itemConfig.itemHeight}vh`,
+    top: `calc(${itemConfig.top * itemConfig.itemHeight}vh + ${itemConfig.top * 2.5}px)`,
     left: `${itemConfig.left * itemConfig.width}%`,
     width: `${(itemConfig.isFullWidth ? 100 : itemConfig.width)}%`,
-    height: `${itemConfig.height * itemConfig.itemHeight}vh`,
+    height: `calc(${itemConfig.height * itemConfig.itemHeight}vh + ${itemConfig.height * 2}px)`,
     flexGrow: 1,
     color: "white !important",
     backgroundColor: "black !important",
+    borderRadius: theme.spacing(2),
     // border: "3px solid red",
     zIndex: 2000,
     "&:hover": {
@@ -46,7 +47,9 @@ function CourseItem({
   const handleClose = () => setOpen(false);
 
   return (
-    <Paper className={classes.root}>
+    <Paper 
+      className={classes.root}
+    >
       {/* <Button
         onClick={handleOpen}
         className={classes.itemButton}

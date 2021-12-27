@@ -130,7 +130,7 @@ function Frame(props) {
       <Paper
         variant="outlined"
         className={classes.paper}
-        component="container"
+        component="article"
       >
         <MaintainInfo {...props} />
         {ChildWithProps}

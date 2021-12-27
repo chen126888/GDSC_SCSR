@@ -35,8 +35,9 @@ function RowTitle({
       {Array.from({ length: itemNum }, (e, i) => (
         <SheetRow
           itemHeight={itemHeight}
-          rowIndex={(i + firstClassTime)}
+          rowIndex={`${(i + firstClassTime)}`}
           variant={"title"}
+          key={i}
         />
       ))}
     </Box >

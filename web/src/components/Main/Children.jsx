@@ -34,16 +34,7 @@ var demoFrameData = [
     panelCustomShow: true,
     buttonCustomShow: true,
     searchInputShow: false,
-    children:
-      <CourseTabs
-        contents={[(
-          <DummyFrameChild key={1} />
-        ), (
-          <DummyFrameChild key={2} />
-        )]}
-        labels={["1", "2"]}
-        key={1}
-      />,
+    children: <CourseTabs key={1} />,
   }, {
     label: '備選清單',
     defaultDisplay: 0,
