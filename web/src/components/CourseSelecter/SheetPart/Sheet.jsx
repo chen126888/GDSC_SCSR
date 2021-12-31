@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => createStyles({
     flexDirection: 'column',
     margin: 0,
     padding: 0,
-    overflowY: "scroll",
+    overflowY: "auto",
     overflowX: "hidden",
 
     // scrollbarColor: "#808080 #b3b3b3",
