@@ -18,6 +18,8 @@ const useAxiosConfig = axios.create({
  * @param {String} axiosParams.url the url of data you want
  * @param {String} axiosParams.header the headers of axios
  * @param {String} axiosParams.data the data when request and post
+ * @param {Function} axios.sideEffect the side effect you want to execute when 
+ *  loaded successfully.
  * @returns { Object, String, Boolen }
 **/
 const useAxiosEffect = (axiosParams) => {
