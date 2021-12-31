@@ -9,7 +9,7 @@ import { generateArrange, renderColumn, dummyWeekData } from './SheetColumnRende
 import { makeStyles } from '@material-ui/core/styles';
 import { createStyles } from '@mui/styles';
 // Hooks and Function
-import { useMemo } from 'react';
+import { useMemo, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 const useStyles = makeStyles(theme => createStyles({
@@ -20,31 +20,45 @@ const useStyles = makeStyles(theme => createStyles({
     flexDirection: 'column',
     margin: 0,
     padding: 0,
-    overflowY: "auto",
-    /** scrollbar hidden */
-    "-ms-overflow-style": 'none',
-    "scrollbar-width": 'none',
-    "&::-webkit-scrollbar": {
-      display: "none"
-    }
+    overflowY: "scroll",
+    overflowX: "hidden",
+
+    // scrollbarColor: "#808080 #b3b3b3",
+    "&::-webkit-scrollbar, & *::-webkit-scrollbar": {
+      backgroundColor: "#f0f0f0",
+      borderRadius: theme.spacing(2),
+      width: theme.spacing(2),
+      boxShadow: 'inset 0px 4px 4px rgba(0, 0, 0, 0.25)',
+    },
+    "&::-webkit-scrollbar-thumb, & *::-webkit-scrollbar-thumb": {
+      borderRadius: theme.spacing(2),
+      background: "#B9B9B9",
+      // boxShadow: 'inset 0px 3px 4px rgba(255, 255, 255, 0.6)',
+      minHeight: 24,
+    },
+    "&::-webkit-scrollbar-thumb:focus, & *::-webkit-scrollbar-thumb:focus": {
+      backgroundColor: "#f0f0f0",
+    },
+    "&::-webkit-scrollbar-thumb:active, & *::-webkit-scrollbar-thumb:active": {
+      backgroundColor: "#f0f0f0",
+    },
+    "&::-webkit-scrollbar-thumb:hover, & *::-webkit-scrollbar-thumb:hover": {
+      backgroundColor: "#7188b4",
+    },
+    "&::-webkit-scrollbar-corner, & *::-webkit-scrollbar-corner": {
+      backgroundColor: "#f0f0f0",
+    },
+    scrollBehavior: "smooth",
+
   },
+  quickBox: {
+    flexGrow: 1,
+    flexDirection: 'row',
+    display: 'flex',
+    padding: 0,
+  }
 
 }));
-
-function QuickBox(props){ 
-  return (
-    <Box
-      sx={{
-        flexGrow: props.flexGrowNum,
-        flexDirection: 'row',
-        display: 'flex',
-      }}
-      component={props.component}
-    >
-      {props.children}
-    </Box>
-  )
-};
 
 function Sheet({
   courseWeekData, itemHeight,
@@ -52,14 +66,13 @@ function Sheet({
   const classes = useStyles({});
 
   const sheetExport = useMemo(() => {
-    let flexGrowNum = 7;
     let columnConfigObject = {};
     let firstClassTimeArray = [];
     let lastClassTimeArray = [];
-    let weekDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
     let weekDaysZh = {
       "Mon": "一", "Tue": "二", "Wed": "三", "Thu": "四", "Fri": "五", "Sat": "六", "Sun": "日"
     }
+    let weekDays = Object.keys(weekDaysZh);
 
     weekDays.forEach((weekKey, i) => {
       let {
@@ -75,6 +88,7 @@ function Sheet({
       lastClassTimeArray.push(lastClassTime);
     });
 
+    console.log(firstClassTimeArray, lastClassTimeArray)
     let firstClassTime = Math.min(...firstClassTimeArray);
     let lastClassTime = Math.max(...lastClassTimeArray);
 
@@ -88,11 +102,8 @@ function Sheet({
         columnConfigObject[weekKey].stackNum
       );
 
-      if (
-        (renderResult.length === 0) && (["Sat", "Sun"].includes(weekKey))
-      ) {
+      if ((renderResult.length === 0) && (["Sat", "Sun"].includes(weekKey))) {
         delete weekDays[weekDays.indexOf(weekKey)];
-        flexGrowNum -= 1;
         return false;
       } else {
         return (
@@ -108,50 +119,53 @@ function Sheet({
       }
     });
 
-    return [
-      <QuickBox key={"header"} component={"header"} >
-        <SheetRow
-          itemHeight={itemHeight * 0.5}
-          rowIndex={""}
-          variant={"title"}
-          flexGrow={0.4}
-          key={0}
-        />
-        <QuickBox flexGrowNum={flexGrowNum} >
-          {weekDays.map((weekKey, i) => (
+    return (
+      <Fragment>
+        <thead className={classes.quickBox} >
+          <tr className={classes.quickBox} >
             <SheetRow
+              key={0}
               itemHeight={itemHeight * 0.5}
-              rowIndex={weekDaysZh[weekKey]}
+              rowIndex={"#"}
               variant={"title"}
               flexGrow={0.4}
-              key={i}
+              component={"th"}
             />
-          ))}
-        </QuickBox>
-      </QuickBox>
-      ,
-      <QuickBox key={"main"} component={"main"} >
-        <RowTitle
-          itemHeight={itemHeight}
-          firstClassTime={firstClassTime}
-          lastClassTime={lastClassTime}
-        />
-        <QuickBox flexGrowNum={flexGrowNum} >
-          {columnExport}
-        </QuickBox>
-      </QuickBox>
-    ]
-  }, [courseWeekData, itemHeight]);
+            {weekDays.map((weekKey, i) => (
+              <SheetRow
+                key={i}
+                itemHeight={itemHeight * 0.5}
+                rowIndex={weekDaysZh[weekKey]}
+                variant={"title"}
+                flexGrow={1}
+                component={"th"}
+              />
+            ))}
+          </tr>
+        </thead>
+        <tbody className={classes.quickBox} >
+          <tr className={classes.quickBox} >
+            <RowTitle
+              itemHeight={itemHeight}
+              firstClassTime={firstClassTime}
+              lastClassTime={lastClassTime}
+            />
+            {columnExport}
+          </tr>
+        </tbody>
+      </Fragment>
+    )
+  }, [courseWeekData, itemHeight, classes]);
 
   return (
-    <Box className={classes.sheetRoot}>
+    <Box className={classes.sheetRoot} component={"table"} >
       {sheetExport}
     </Box>
   );
 };
 Sheet.defaultProps = {
   courseWeekData: dummyWeekData,
-  itemHeight: 8,
+  itemHeight: 7,
 };
 Sheet.propTypes = {
   courseWeekData: PropTypes.object.isRequired,

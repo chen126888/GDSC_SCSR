@@ -14,8 +14,8 @@ import { renderFrames, selectFrame } from '../FancyFrame/FrameRenders';
 
 const useStyles = makeStyles(theme => createStyles({
   root: {
-    top: '25vh',
-    height: '75vh',
+    top: '15vh',
+    height: '85vh',
     width: '100%',
     position: 'absolute',
     overflow: 'hidden',
@@ -40,19 +40,32 @@ const useStyles = makeStyles(theme => createStyles({
 
 function MainContent(props) {
   const classes = useStyles(props);
-  let { frameIndex, frameDisplay, currentSelected, lastSelected, isSelectedEvent } = props.frameRenderRuleState;
+  let { 
+    frameIndex, 
+    frameDisplay, 
+    currentSelected, 
+    lastSelected, 
+    isSelectedEvent 
+  } = props.frameRenderRuleState;
   let { data, allowSmall } = props.frameRenderBaseObject;
   const frameRender = useMemo(() => (
     renderFrames({
-      frameIndex: frameIndex, 
-      frameDisplay: frameDisplay, 
+      frameIndex: frameIndex,
+      frameDisplay: frameDisplay,
       currentSelected: currentSelected,
-      data: data, 
+      data: data,
       allowSmall: allowSmall,
       setFrameRenderRuleHook: props.setFrameRenderRuleHook,
     })
-  ), [allowSmall, currentSelected, data, frameDisplay, frameIndex, props.setFrameRenderRuleHook]); 
-  // useMemo is not useEffect, but dependecy logic is same
+  ), [
+    allowSmall,
+    currentSelected, 
+    data, 
+    frameDisplay, 
+    frameIndex, 
+    props.setFrameRenderRuleHook
+  ]);
+  /** useMemo is not useEffect, but dependecy logic is same */
 
   useEffect(() => {
     if ((currentSelected !== lastSelected) || isSelectedEvent) {
@@ -68,7 +81,15 @@ function MainContent(props) {
     } else {
       // console.log('Not Select Frame activated');
     }
-  }, [allowSmall, currentSelected, frameDisplay, frameIndex, isSelectedEvent, lastSelected, props])
+  }, [
+    allowSmall,
+    currentSelected,
+    frameDisplay,
+    frameIndex,
+    isSelectedEvent,
+    lastSelected,
+    props
+  ])
 
   const handleWidthChange = () => {
     console.log('Panel Respond:', props.frameRenderRuleState);

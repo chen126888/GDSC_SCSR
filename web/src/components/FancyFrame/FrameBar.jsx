@@ -27,6 +27,8 @@ const useStyles = makeStyles(theme => createStyles({
     borderTopRightRadius: theme.spacing(props.spacingLv),
     borderTopLeftRadius: theme.spacing(props.spacingLv),
     flexGrow: 1,
+    maxHeight: '7vh',
+    minHeight: '7vh',
     display: 'flex',
     position: 'relative',
   }),

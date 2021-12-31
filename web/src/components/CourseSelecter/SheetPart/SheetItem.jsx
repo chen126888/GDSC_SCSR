@@ -73,9 +73,13 @@ function CourseItem({
           </Grid>
         </Paper>
       </Button> */}
-      {String(courseTime)}{"/"}
-      {String(itemConfig.top)}{"/"}
-      {String(itemConfig.isFullWidth)}{"/"}
+      <p>{String(courseTitle)}</p>
+      <p>
+        {String(courseTime)}{"/"}
+        {String(itemConfig.top)}{"/"}
+        {String(itemConfig.isFullWidth)}
+      </p>
+      <p>{String(courseState)}</p>
       <Modal
         open={open}
         onClose={handleClose}

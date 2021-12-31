@@ -7,8 +7,8 @@ import CourseItem from './SheetItem';
 // Hooks and Function
 
 const rowDisplayRuleBound = stackArray => {
-  let firstClassTime = 6;
-  let lastClassTime = 21;
+  let firstClassTime = 10;
+  let lastClassTime = 15;
 
   for (let stackIndex = 0; stackIndex < 24; stackIndex++) {
     if (stackArray[stackIndex] !== 0) {

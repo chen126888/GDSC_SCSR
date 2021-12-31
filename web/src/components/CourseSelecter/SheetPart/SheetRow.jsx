@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => createStyles({
 }));
 
 function SheetRow({
-  itemHeight, rowIndex, variant, flexGrow
+  itemHeight, rowIndex, variant, flexGrow, component
 }) {
   const classes = useStyles({
     itemHeight: itemHeight,
@@ -43,6 +43,7 @@ function SheetRow({
     <Paper
       className={classes.root}
       square={true}
+      component={component}
       {...(
         variant === "title" ? { 
           elevation: 0 

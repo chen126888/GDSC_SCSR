@@ -16,6 +16,7 @@ const useStyles = makeStyles(theme => createStyles({
     display: 'flex',
     flexGrow: 1,
     flexDirection: 'column',
+    padding: 0,
     zIndex: 2000,
     "&:hover": {
       zIndex: 2100,
@@ -42,7 +43,10 @@ function DayColumn({
   });
 
   return (
-    <Box className={classes.dayRoot} >
+    <Box 
+      className={classes.dayRoot} 
+      component={"td"}
+    >
       <Box className={classes.dayContent} >
         {renderResult}
         {Array.from({ length: itemNum }, (e, i) => (

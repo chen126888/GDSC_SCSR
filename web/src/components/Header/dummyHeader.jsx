@@ -17,7 +17,7 @@ import PropTypes from 'prop-types';
 const useStyles = makeStyles( theme => createStyles({
   root: {
     top: '0',
-    height: '25vh',
+    height: '15vh',
     width: '100%',
     position: 'absolute',
   },

@@ -31,7 +31,7 @@ function RowTitle({
   });
 
   return (
-    <Box className={classes.dayRoot} >
+    <Box className={classes.dayRoot} component={"td"} >
       {Array.from({ length: itemNum }, (e, i) => (
         <SheetRow
           itemHeight={itemHeight}
