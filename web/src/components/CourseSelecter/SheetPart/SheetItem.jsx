@@ -50,7 +50,7 @@ function CourseItem({
     <Paper 
       className={classes.root}
     >
-      {/* <Button
+      <Button
         onClick={handleOpen}
         className={classes.itemButton}
       >
@@ -72,7 +72,7 @@ function CourseItem({
             </Grid>
           </Grid>
         </Paper>
-      </Button> */}
+      </Button>
       <p>{String(courseTitle)}</p>
       <p>
         {String(courseTime)}{"/"}

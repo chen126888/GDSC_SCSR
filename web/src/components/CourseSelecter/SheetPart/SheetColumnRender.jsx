@@ -144,7 +144,7 @@ const renderColumn = (
           courseTitle={courseDataObject[courseConfig.id].name}
           courseState={courseDataObject[courseConfig.id].state}
           itemConfig={courseConfig}
-          courseInfo={courseDataObject[courseConfig.id].info}
+          courseInfo={courseDataObject[courseConfig.id].info_simple}
           courseTime={courseDataObject[courseConfig.id].time}
         />
       )
@@ -158,30 +158,20 @@ let dummyData = [
     "name": "blabla1",
     "time": [5, 9, 10],
     "state": "selected",
-    "info": {
+    "info_simple": {
       "teacher": "Prof.blabla",
-      "note": "say bla",
-      course_id: "",
-      instructor: "",
-      type:"",
-      unit:"",
-      credit:"",
-      alteration:"",
-      remain:"",
-      location:"",
-      language:"",
-      enrollment:"",
-      syllabus:"",
-      regulation:"",
+      "course_id": "",
+      "type":"",
     },
   }, {
     "name": "blabla2",
     "time": [9, 10, 11],
     "state": "selected",
-    "info": {
+    "info_simple": {
       "teacher": "Prof.blabla",
-      "note": "say bla",
-    }
+      "course_id": "",
+      "type":"",
+    },
   },
 ]
 
@@ -189,241 +179,149 @@ let dummyWeekData = {
   "Mon": [
     {
       "name": "blabla1",
-      "time": [6, 9, 10],
+      "time": [5, 9, 10],
       "state": "selected",
-      "info": {
+      "info_simple": {
         "teacher": "Prof.blabla",
-        "note": "say bla",
-        course_id: "",
-        instructor: "",
-        type:"",
-        unit:"",
-        credit:"",
-        alteration:"",
-        remain:"",
-        location:"",
-        language:"",
-        enrollment:"",
-        syllabus:"",
-        regulation:"",
-      }
+        "course_id": "",
+        "type":"",
+      },
     }, {
       "name": "blabla2",
       "time": [9, 10, 11],
       "state": "selected",
-      "info": {
+      "info_simple": {
         "teacher": "Prof.blabla",
-        "note": "say bla",
-        course_id: "",
-        instructor: "",
-        type:"",
-        unit:"",
-        credit:"",
-        alteration:"",
-        remain:"",
-        location:"",
-        language:"",
-        enrollment:"",
-        syllabus:"",
-        regulation:"",
-      }
-    }, {
-      "name": "blabla3",
-      "time": [11, 12, 13],
-      "state": "selected",
-      "info": {
-        "teacher": "Prof.blabla",
-        "note": "say bla",
-        course_id: "",
-        instructor: "",
-        type:"",
-        unit:"",
-        credit:"",
-        alteration:"",
-        remain:"",
-        location:"",
-        language:"",
-        enrollment:"",
-        syllabus:"",
-        regulation:"",
-      }
-    }, {
-      "name": "blabla4",
-      "time": [15, 16],
-      "state": "selected",
-      "info": {
-        "teacher": "Prof.blabla",
-        "note": "say bla",
-        course_id: "",
-        instructor: "",
-        type:"",
-        unit:"",
-        credit:"",
-        alteration:"",
-        remain:"",
-        location:"",
-        language:"",
-        enrollment:"",
-        syllabus:"",
-        regulation:"",
-      }
+        "course_id": "",
+        "type":"",
+      },
     },
   ],
   "Tue": [
     {
       "name": "blabla1",
-      "time": [8, 9, 10],
+      "time": [5, 9, 10],
       "state": "selected",
-      "info": {
+      "info_simple": {
         "teacher": "Prof.blabla",
-        "note": "say bla",
-        course_id: "",
-        instructor: "",
-        type:"",
-        unit:"",
-        credit:"",
-        alteration:"",
-        remain:"",
-        location:"",
-        language:"",
-        enrollment:"",
-        syllabus:"",
-        regulation:"",
-      }
+        "course_id": "",
+        "type":"",
+      },
     }, {
       "name": "blabla2",
       "time": [9, 10, 11],
       "state": "selected",
-      "info": {
+      "info_simple": {
         "teacher": "Prof.blabla",
-        "note": "say bla",
-        course_id: "",
-        instructor: "",
-        type:"",
-        unit:"",
-        credit:"",
-        alteration:"",
-        remain:"",
-        location:"",
-        language:"",
-        enrollment:"",
-        syllabus:"",
-        regulation:"",
-      }
-    }, {
-      "name": "blabla3",
-      "time": [10, 11, 12],
-      "state": "selected",
-      "info": {
-        "teacher": "Prof.blabla",
-        "note": "say bla",
-        course_id: "",
-        instructor: "",
-        type:"",
-        unit:"",
-        credit:"",
-        alteration:"",
-        remain:"",
-        location:"",
-        language:"",
-        enrollment:"",
-        syllabus:"",
-        regulation:"",
-      }
-    }, {
-      "name": "blabla4",
-      "time": [15, 16, 17],
-      "state": "selected",
-      "info": {
-        "teacher": "Prof.blabla",
-        "note": "say bla",
-        course_id: "",
-        instructor: "",
-        type:"",
-        unit:"",
-        credit:"",
-        alteration:"",
-        remain:"",
-        location:"",
-        language:"",
-        enrollment:"",
-        syllabus:"",
-        regulation:"",
-      }
+        "course_id": "",
+        "type":"",
+      },
     },
   ],
   "Wed": [
     {
-      "name": "blabla4",
-      "time": [15],
+      "name": "blabla1",
+      "time": [5, 9, 10],
       "state": "selected",
-      "info": {
+      "info_simple": {
         "teacher": "Prof.blabla",
-        "note": "say bla",
-        course_id: "",
-        instructor: "",
-        type:"",
-        unit:"",
-        credit:"",
-        alteration:"",
-        remain:"",
-        location:"",
-        language:"",
-        enrollment:"",
-        syllabus:"",
-        regulation:"",
-      }
+        "course_id": "",
+        "type":"",
+      },
+    }, {
+      "name": "blabla2",
+      "time": [9, 10, 11],
+      "state": "selected",
+      "info_simple": {
+        "teacher": "Prof.blabla",
+        "course_id": "",
+        "type":"",
+      },
     },
   ],
   "Thu": [
+    {
+      "name": "blabla1",
+      "time": [5, 9, 10],
+      "state": "selected",
+      "info_simple": {
+        "teacher": "Prof.blabla",
+        "course_id": "",
+        "type":"",
+      },
+    }, {
+      "name": "blabla2",
+      "time": [9, 10, 11],
+      "state": "selected",
+      "info_simple": {
+        "teacher": "Prof.blabla",
+        "course_id": "",
+        "type":"",
+      },
+    },
   ],
   "Fri": [
     {
-      "name": "blabla4",
-      "time": [15, 16, 17],
+      "name": "blabla1",
+      "time": [5, 9, 10],
       "state": "selected",
-      "info": {
+      "info_simple": {
         "teacher": "Prof.blabla",
-        "note": "say bla",
-        course_id: "",
-        instructor: "",
-        type:"",
-        unit:"",
-        credit:"",
-        alteration:"",
-        remain:"",
-        location:"",
-        language:"",
-        enrollment:"",
-        syllabus:"",
-        regulation:"",
-      }
+        "course_id": "",
+        "type":"",
+      },
+    }, {
+      "name": "blabla2",
+      "time": [9, 10, 11],
+      "state": "selected",
+      "info_simple": {
+        "teacher": "Prof.blabla",
+        "course_id": "",
+        "type":"",
+      },
     },
   ],
   "Sat": [
     {
-      "name": "blabla4",
-      "time": [15, 13, 17],
+      "name": "blabla1",
+      "time": [5, 9, 10],
       "state": "selected",
-      "info": {
+      "info_simple": {
         "teacher": "Prof.blabla",
-        "note": "say bla",
-        course_id: "",
-        instructor: "",
-        type:"",
-        unit:"",
-        credit:"",
-        alteration:"",
-        remain:"",
-        location:"",
-        language:"",
-        enrollment:"",
-        syllabus:"",
-        regulation:"",
-      }
+        "course_id": "",
+        "type":"",
+      },
+    }, {
+      "name": "blabla2",
+      "time": [9, 10, 11],
+      "state": "selected",
+      "info_simple": {
+        "teacher": "Prof.blabla",
+        "course_id": "",
+        "type":"",
+      },
     },
   ],
   "Sun": [
+    {
+      "name": "blabla1",
+      "time": [5, 9, 10],
+      "state": "selected",
+      "info_simple": {
+        "teacher": "Prof.blabla",
+        "course_id": "",
+        "type":"",
+      },
+    }, {
+      "name": "blabla2",
+      "time": [9, 10, 11],
+      "state": "selected",
+      "info_simple": {
+        "teacher": "Prof.blabla",
+        "course_id": "",
+        "type":"",
+      },
+    },
   ]
 }
 

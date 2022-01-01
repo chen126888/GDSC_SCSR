@@ -113,7 +113,7 @@ function CourseTabs({
           className={classes.tabFrame}
         >
           {loading ? <p>loading...</p> : ""}
-          <Sheet courseWeekData={tabContent} itemHeight={5} />
+          <Sheet courseWeekData={tabContent} itemHeight={6} />
         </TabLabel>
       ))}
     </Box>
