@@ -64,7 +64,6 @@ useAxiosEffect.defaultProps = {
  * @param {Object} axiosParams 
  * @returns { Object, String, Boolen }
  */
-
 const useAxios = (axiosParams) => useAxiosEffect({
   ...axiosParams,
   responeDefault: undefined,
