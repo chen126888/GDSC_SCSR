@@ -1,6 +1,8 @@
 import { createTheme } from '@mui/material/styles';
 
-export const courseSelectThemeLightOne = createTheme({
+let theme = createTheme();
+
+export const courseSelectThemeLightOne = createTheme(theme, {
   palette: {
     type: 'light',
     primary: {
@@ -15,7 +17,8 @@ export const courseSelectThemeLightOne = createTheme({
       contrastText: '#4F4F4F',
     },
     background: {
-      default: '#f0f0f0',
+      default: '#F0F0F0',
+      paper: '#F0F0F0',
     },
     success: {
       main: '#6E9B6D',
@@ -38,6 +41,9 @@ export const courseSelectThemeLightOne = createTheme({
       light: '#E0E0E0',
       dark: '#E0E0E0',
       contrastText: '#4F4F4F',
+    },
+    disabled: {
+      main: '#B0B0B0'
     },
   },
   typography: {
@@ -95,5 +101,15 @@ export const courseSelectThemeLightOne = createTheme({
     /**
      * 表格標題
      */
+  },
+  props: {
+    MuiAppBar: {
+      color: 'transparent',
+    },
+  },
+  shadows: {
+    ...theme.shadows,
+    frameInner: "inset 0px 4px 4px rgba(0, 0, 0, 0.25)",
+    frame: "-10px -11px 16px 1px rgba(252, 252, 252, 0.7), 9px 14px 24px -10px rgba(0, 0, 0, 0.25)"
   },
 });

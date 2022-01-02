@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="45"
+   height="45"
+   viewBox="0 0 45 45"
+   fill="none"
+   version="1.1"
+   id="svg4"
+   sodipodi:docname="CourseRegisterable.svg"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs8" />
+  <sodipodi:namedview
+     id="namedview6"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="18.311111"
+     inkscape:cx="22.581918"
+     inkscape:cy="22.527306"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="1912"
+     inkscape:window-y="113"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4" />
+  <path
+     d="M 131.30984,50.219928 72.00004,109.53001 39.689961,77.310104 26.999966,90.000104 72.00004,134.99992 143.99983,63.000108 Z M 89.999852,0 C 40.319872,0 0,40.320108 0,90.000104 0,139.6801 40.319872,180 89.999852,180 139.67984,180 180,139.6801 180,90.000104 180,40.320108 139.67984,0 89.999852,0 Z m 0,161.99991 c -39.779896,0 -71.999847,-32.2199 -71.999847,-71.999806 0,-39.780176 32.219951,-72.000108 71.999847,-72.000108 39.780168,0 72.000068,32.219932 72.000068,72.000108 0,39.779906 -32.2199,71.999806 -72.000068,71.999806 z"
+     fill="#6e9b6d"
+     id="path2"
+     style="stroke-width:2.7" />
+</svg>

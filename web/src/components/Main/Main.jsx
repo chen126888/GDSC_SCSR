@@ -5,8 +5,7 @@ import Box from '@mui/material/Box';
 // Main Components
 
 // Styles
-import { makeStyles } from '@material-ui/core/styles';
-import { createStyles } from '@mui/styles';
+import { makeStyles, createStyles } from '@mui/styles';
 // Hooks and Function
 import PropTypes from 'prop-types';
 import { useMemo, useEffect } from 'react';

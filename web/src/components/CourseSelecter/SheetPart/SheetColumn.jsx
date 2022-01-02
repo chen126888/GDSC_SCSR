@@ -3,8 +3,7 @@ import Box from '@mui/material/Box';
 // Main Components
 import SheetRow from './SheetRow';
 // Styles
-import { makeStyles } from '@material-ui/core/styles';
-import { createStyles } from '@mui/styles';
+import { makeStyles, createStyles } from '@mui/styles';
 // Hooks and Function
 import PropTypes from 'prop-types';
 import { dummyData } from './SheetColumnRender';
@@ -17,19 +16,12 @@ const useStyles = makeStyles(theme => createStyles({
     flexGrow: 1,
     flexDirection: 'column',
     padding: 0,
-    zIndex: 2000,
+    zIndex: 1210,
     "&:hover": {
-      zIndex: 2100,
+      zIndex: 1220,
     }
   }),
-  dayContent: props => ({
-    position: "relative",
-    height: `${props.itemHeight * (props.itemNum + 0.5)}vh`,
-    width: "100%",
-    display: 'flex',
 
-    flexDirection: 'column',
-  }),
 }));
 
 function DayColumn({
@@ -43,20 +35,18 @@ function DayColumn({
   });
 
   return (
-    <Box 
-      className={classes.dayRoot} 
+    <Box
+      className={classes.dayRoot}
       component={"td"}
     >
-      <Box className={classes.dayContent} >
-        {renderResult}
-        {Array.from({ length: itemNum }, (e, i) => (
-          <SheetRow 
-            itemHeight={itemHeight}
-            rowIndex={""} 
-            key={i}
-          />
-        ))}
-      </Box >
+      {renderResult}
+      {Array.from({ length: itemNum }, (e, i) => (
+        <SheetRow
+          itemHeight={itemHeight}
+          rowIndex={""}
+          key={i}
+        />
+      ))}
     </Box >
   )
 };

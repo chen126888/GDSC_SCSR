@@ -7,8 +7,7 @@ import Box from '@mui/material/Box';
 import Frame from '../FancyFrame/Frame';
 // import CourseTabs from '../CourseSelecter/CourseSheetTab';
 // Styles
-import { makeStyles } from '@material-ui/core/styles';
-import { createStyles } from '@mui/styles';
+import { makeStyles, createStyles } from '@mui/styles';
 import MinimizeIcon from '@mui/icons-material/Minimize';
 // import CloseIcon from '@mui/icons-material/Close';
 // import EditIcon from '@mui/icons-material/Edit';

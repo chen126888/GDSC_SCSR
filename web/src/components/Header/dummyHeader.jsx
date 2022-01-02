@@ -7,8 +7,7 @@ import Button from '@mui/material/Button';
 // Main Components
 
 // Styles
-import { makeStyles } from '@material-ui/core/styles';
-import { createStyles } from '@mui/styles';
+import { makeStyles, createStyles } from '@mui/styles';
 // Hooks and Function
 // import clsx from 'clsx';
 // import { useState, useEffect } from 'react';
@@ -16,6 +15,7 @@ import PropTypes from 'prop-types';
 
 const useStyles = makeStyles( theme => createStyles({
   root: {
+    backgroundColor: theme.palette.background.default,
     top: '0',
     height: '15vh',
     width: '100%',
@@ -30,10 +30,9 @@ const useStyles = makeStyles( theme => createStyles({
     position: 'absolute',
   },
   buttonSquare: {
-    // backgroundColor: theme.palette.primary.dark,
+    backgroundColor: theme.palette.background.default,
     color: theme.palette.primary.contrastText,
     verticalAlign: 'middle',
-    // AlignItems: 'center',
     display: 'flex',
   }
 

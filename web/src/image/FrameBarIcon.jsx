@@ -4,7 +4,6 @@
 
 // Styles
 import SvgIcon from '@mui/material/SvgIcon';
-
 // Hooks and Function
 
 const EnlargeIcon = props => (

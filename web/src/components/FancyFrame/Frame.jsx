@@ -5,8 +5,7 @@ import Typography from '@material-ui/core/Typography';
 // Main Components
 import FrameBar from './FrameBar';
 // Styles
-import { makeStyles } from '@material-ui/core/styles';
-import { createStyles } from '@mui/styles';
+import { makeStyles, createStyles } from '@mui/styles';
 // Hooks and Function
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';

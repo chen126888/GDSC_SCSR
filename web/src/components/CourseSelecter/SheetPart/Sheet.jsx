@@ -6,11 +6,11 @@ import SheetRow from './SheetRow';
 import RowTitle from './SheetRowTitle';
 import { generateArrange, renderColumn, dummyWeekData } from './SheetColumnRender';
 // Styles
-import { makeStyles } from '@material-ui/core/styles';
-import { createStyles } from '@mui/styles';
+import { makeStyles, createStyles } from '@mui/styles';
 // Hooks and Function
 import { useMemo, Fragment } from 'react';
 import PropTypes from 'prop-types';
+
 
 const useStyles = makeStyles(theme => createStyles({
   sheetRoot: {
@@ -23,30 +23,28 @@ const useStyles = makeStyles(theme => createStyles({
     overflowY: "auto",
     overflowX: "hidden",
 
-    // scrollbarColor: "#808080 #b3b3b3",
     "&::-webkit-scrollbar, & *::-webkit-scrollbar": {
-      backgroundColor: "#f0f0f0",
+      backgroundColor: theme.palette.background.default,
       borderRadius: theme.spacing(2),
       width: theme.spacing(2),
       boxShadow: 'inset 0px 4px 4px rgba(0, 0, 0, 0.25)',
     },
     "&::-webkit-scrollbar-thumb, & *::-webkit-scrollbar-thumb": {
       borderRadius: theme.spacing(2),
-      background: "#B9B9B9",
-      // boxShadow: 'inset 0px 3px 4px rgba(255, 255, 255, 0.6)',
+      backgroundColor: theme.palette.text.disabled,
       minHeight: 24,
     },
     "&::-webkit-scrollbar-thumb:focus, & *::-webkit-scrollbar-thumb:focus": {
-      backgroundColor: "#f0f0f0",
+      backgroundColor: theme.palette.background.default,
     },
     "&::-webkit-scrollbar-thumb:active, & *::-webkit-scrollbar-thumb:active": {
-      backgroundColor: "#f0f0f0",
+      backgroundColor: theme.palette.background.default,
     },
     "&::-webkit-scrollbar-thumb:hover, & *::-webkit-scrollbar-thumb:hover": {
-      backgroundColor: "#7188b4",
+      backgroundColor: theme.palette.primary.main,
     },
     "&::-webkit-scrollbar-corner, & *::-webkit-scrollbar-corner": {
-      backgroundColor: "#f0f0f0",
+      backgroundColor: theme.palette.background.default,
     },
     scrollBehavior: "smooth",
 
@@ -55,7 +53,7 @@ const useStyles = makeStyles(theme => createStyles({
     flexGrow: 1,
     flexDirection: 'row',
     display: 'flex',
-    padding: 0,
+    padding: theme.spacing(0.2),
   }
 
 }));
