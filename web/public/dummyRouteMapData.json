@@ -1,0 +1,145 @@
+[
+    {
+        "semester": "Freshman-Fall",
+        "courses": [
+            {
+                "name": "微積分甲",
+                "credit": 3,
+                "typeGroup": "",
+                "prerequisiteGroup": [0],
+                "note": "需為本院開課"
+            },
+            {
+                "name": "計算機程式設計（一）",
+                "credit": 3,
+                "typeGroup": "",
+                "prerequisiteGroup": [],
+                "note": "需為本系開課"
+            }
+        ]
+    },
+    {
+        "semester": "Freshman-Spring",
+        "courses": [
+            {
+                "name": "微積分甲",
+                "credit": 3,
+                "typeGroup": "",
+                "prerequisiteGroup": [0],
+                "note": "需為本系開課"
+            },
+            {
+                "name": "計算機程式設計（二）",
+                "credit": 3,
+                "typeGroup": "",
+                "prerequisiteGroup": [],
+                "note": "需為本系開課"
+            },
+            {
+                "name": "線性代數",
+                "credit": 3,
+                "typeGroup": "",
+                "prerequisiteGroup": [],
+                "note": "需為本系開課"
+            }
+        ]
+    },
+    {
+        "semester": "Sophomore-Fall",
+        "courses": [
+            {
+                "name": "物件導向程式設計",
+                "credit": 3,
+                "typeGroup": "",
+                "prerequisiteGroup": [],
+                "note": "需為本系開課"
+            },
+            {
+                "name": "資料結構",
+                "credit": 3,
+                "typeGroup": "",
+                "prerequisiteGroup": [],
+                "note": "需為本系開課"
+            },
+            {
+                "name": "機率論",
+                "credit": 3,
+                "typeGroup": "",
+                "prerequisiteGroup": [],
+                "note": "需為本系開課"
+            },
+            {
+                "name": "離散數學",
+                "credit": 3,
+                "typeGroup": "",
+                "prerequisiteGroup": [],
+                "note": "需為本系開課"
+            }
+        ]
+    },
+    {
+        "semester": "Sophomore-Spring",
+        "courses": [
+            { "name": "bbb00102",
+                "typeGroup": "",
+                "prerequisiteGroup": [],
+                "note": "" },
+            { "name": "bbb00202",
+                "typeGroup": "",
+                "prerequisiteGroup": [],
+                "note": "" }
+        ]
+    },
+    {
+        "semester": "Junior-Fall",
+        "courses": [
+            { "name": "ccc00101",
+                "typeGroup": "",
+                "prerequisiteGroup": [],
+                "note": ""  },
+            { "name": "ccc00201",
+                "typeGroup": "",
+                "prerequisiteGroup": [],
+                "note": ""  }
+        ]
+    },
+    {
+        "semester": "Junior-Spring",
+        "courses": [
+            { "name": "ccc00102",
+                "typeGroup": "",
+                "prerequisiteGroup": [],
+                "note": "" },
+            { "name": "ccc00202",
+                "typeGroup": "",
+                "prerequisiteGroup": [],
+                "note": "" }
+        ]
+    },
+    {
+        "semester": "Senior-Fall",
+        "courses": [
+            { "name": "ddd00101",
+                "typeGroup": "",
+                "prerequisiteGroup": [],
+                "note": "" },
+            { "name": "ddd00201",
+                "typeGroup": "",
+                "prerequisiteGroup": [],
+                "note": "" }
+        ]
+    },
+    {
+        "semester": "Senior-Spring",
+        "courses": [
+            { "name": "ddd00102",
+                "typeGroup": "",
+                "prerequisiteGroup": [],
+                "note": "" },
+            { "name": "ddd00202",
+                "typeGroup": "",
+                "prerequisiteGroup": [],
+                "note": "" }
+        ]
+    }
+]
