@@ -2,6 +2,7 @@
 
 // Main Components
 import CourseTabs from '../CourseSelecter/CourseSelection';
+import RouteTabs from '../CourseRouteMap/CourseRoute';
 import { DummybuttonCustom, DummyFrameChild } from './DummyComponent';
 // Styles
 
@@ -61,7 +62,7 @@ var demoFrameData = [
     panelCustomShow: true,
     buttonCustomShow: true,
     searchInputShow: true,
-    children: <DummyFrameChild key={1} />,
+    children: <RouteTabs key={1} />,
   },
 ];
 
