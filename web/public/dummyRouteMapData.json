@@ -4,14 +4,14 @@
         "courses": [
             {
                 "name": "微積分甲",
-                "credit": 3,
+                "credit": "3.0",
                 "typeGroup": "",
                 "prerequisiteGroup": [0],
                 "note": "需為本院開課"
             },
             {
                 "name": "計算機程式設計（一）",
-                "credit": 3,
+                "credit": "3.0",
                 "typeGroup": "",
                 "prerequisiteGroup": [],
                 "note": "需為本系開課"
@@ -23,21 +23,21 @@
         "courses": [
             {
                 "name": "微積分甲",
-                "credit": 3,
+                "credit": "3.0",
                 "typeGroup": "",
                 "prerequisiteGroup": [0],
                 "note": "需為本系開課"
             },
             {
                 "name": "計算機程式設計（二）",
-                "credit": 3,
+                "credit": "3.0",
                 "typeGroup": "",
                 "prerequisiteGroup": [],
                 "note": "需為本系開課"
             },
             {
                 "name": "線性代數",
-                "credit": 3,
+                "credit": "3.0",
                 "typeGroup": "",
                 "prerequisiteGroup": [],
                 "note": "需為本系開課"
@@ -49,28 +49,28 @@
         "courses": [
             {
                 "name": "物件導向程式設計",
-                "credit": 3,
+                "credit": "3.0",
                 "typeGroup": "",
                 "prerequisiteGroup": [],
                 "note": "需為本系開課"
             },
             {
                 "name": "資料結構",
-                "credit": 3,
+                "credit": "3.0",
                 "typeGroup": "",
                 "prerequisiteGroup": [],
                 "note": "需為本系開課"
             },
             {
                 "name": "機率論",
-                "credit": 3,
+                "credit": "3.0",
                 "typeGroup": "",
                 "prerequisiteGroup": [],
                 "note": "需為本系開課"
             },
             {
                 "name": "離散數學",
-                "credit": 3,
+                "credit": "3.0",
                 "typeGroup": "",
                 "prerequisiteGroup": [],
                 "note": "需為本系開課"
@@ -80,66 +80,194 @@
     {
         "semester": "Sophomore-Spring",
         "courses": [
-            { "name": "bbb00102",
+            {
+                "name": "程式能力檢定",
+                "credit": "0.0",
                 "typeGroup": "",
                 "prerequisiteGroup": [],
-                "note": "" },
-            { "name": "bbb00202",
+                "note": "需為本系開課"
+            },
+            {
+                "name": "演算法",
+                "credit": "3.0",
                 "typeGroup": "",
                 "prerequisiteGroup": [],
-                "note": "" }
+                "note": "需為本系開課"
+            },
+            {
+                "name": "數位系統實驗",
+                "credit": "0.0",
+                "typeGroup": "",
+                "prerequisiteGroup": [],
+                "note": "需為本系開課"
+            },
+            {
+                "name": "數位系統導論",
+                "credit": "3.0",
+                "typeGroup": "",
+                "prerequisiteGroup": [],
+                "note": "需為本系開課"
+            }
         ]
     },
     {
         "semester": "Junior-Fall",
         "courses": [
-            { "name": "ccc00101",
+            {
+                "name": "作業系統",
+                "credit": 3.0,
                 "typeGroup": "",
                 "prerequisiteGroup": [],
-                "note": ""  },
-            { "name": "ccc00201",
+                "note": "需為本系開課"
+            },
+            {
+                "name": "計算機結構與組織",
+                "credit": 3.0,
                 "typeGroup": "",
                 "prerequisiteGroup": [],
-                "note": ""  }
+                "note": "需為本系開課"
+            },
+            {
+                "name": "人工智慧概論",
+                "credit": 3.0,
+                "typeGroup": "B",
+                "prerequisiteGroup": [],
+                "note": "需為本系開課"
+            },
+            {
+                "name": "計算機網路",
+                "credit": 3.0,
+                "typeGroup": "B",
+                "prerequisiteGroup": [],
+                "note": "需為本系開課"
+            },
+            {
+                "name": "軟體工程概論",
+                "credit": 3.0,
+                "typeGroup": "B",
+                "prerequisiteGroup": [],
+                "note": "需為本系開課"
+            },
+            {
+                "name": "正規語言與自動機器",
+                "credit": 3.0,
+                "typeGroup": "C",
+                "prerequisiteGroup": [],
+                "note": "需為本系開課"
+            },
+            {
+                "name": "資訊理論",
+                "credit": 3.0,
+                "typeGroup": "C",
+                "prerequisiteGroup": [],
+                "note": "需為本系開課"
+            }
         ]
     },
     {
         "semester": "Junior-Spring",
         "courses": [
-            { "name": "ccc00102",
-                "typeGroup": "",
+            {
+                "name": "資訊專題（A）",
+                "credit": 3.0,
+                "typeGroup": "A",
                 "prerequisiteGroup": [],
-                "note": "" },
-            { "name": "ccc00202",
-                "typeGroup": "",
+                "note": "需為本系開課"
+            },
+            {
+                "name": "資訊專題（C）",
+                "credit": 3.0,
+                "typeGroup": "A",
                 "prerequisiteGroup": [],
-                "note": "" }
+                "note": "需為本系開課"
+            },
+            {
+                "name": "人機互動",
+                "credit": 3.0,
+                "typeGroup": "B",
+                "prerequisiteGroup": [],
+                "note": "需為本系開課"
+            },
+            {
+                "name": "資料庫系統",
+                "credit": 3.0,
+                "typeGroup": "B",
+                "prerequisiteGroup": [],
+                "note": "需為本系開課"
+            },
+            {
+                "name": "資訊安全",
+                "credit": 3.0,
+                "typeGroup": "B",
+                "prerequisiteGroup": [],
+                "note": "需為本系開課"
+            },
+            {
+                "name": "程式語言",
+                "credit": 3.0,
+                "typeGroup": "C",
+                "prerequisiteGroup": [],
+                "note": "需為本系開課"
+            },
+            {
+                "name": "電腦科學邏輯基礎",
+                "credit": 3.0,
+                "typeGroup": "C",
+                "prerequisiteGroup": [],
+                "note": "需為本系開課"
+            },
+            {
+                "name": "分散式系統",
+                "credit": 3.0,
+                "typeGroup": "C",
+                "prerequisiteGroup": [],
+                "note": "需為本系開課"
+            }
         ]
     },
     {
         "semester": "Senior-Fall",
         "courses": [
-            { "name": "ddd00101",
-                "typeGroup": "",
+            {
+                "name": "資訊專題（B）",
+                "credit": 3.0,
+                "typeGroup": "A",
                 "prerequisiteGroup": [],
-                "note": "" },
-            { "name": "ddd00201",
-                "typeGroup": "",
+                "note": "需為本系開課"
+            },
+            {
+                "name": "資訊專題（D）",
+                "credit": 3.0,
+                "typeGroup": "A",
                 "prerequisiteGroup": [],
-                "note": "" }
+                "note": "需為本系開課"
+            },
+            {
+                "name": "電腦圖學",
+                "credit": 3.0,
+                "typeGroup": "C",
+                "prerequisiteGroup": [],
+                "note": "需為本系開課"
+            },
+            {
+                "name": "編譯器設計",
+                "credit": 3.0,
+                "typeGroup": "C",
+                "prerequisiteGroup": [],
+                "note": "需為本系開課"
+            }
         ]
     },
     {
         "semester": "Senior-Spring",
         "courses": [
-            { "name": "ddd00102",
-                "typeGroup": "",
+            {
+                "name": "等候理論",
+                "credit": 3.0,
+                "typeGroup": "C",
                 "prerequisiteGroup": [],
-                "note": "" },
-            { "name": "ddd00202",
-                "typeGroup": "",
-                "prerequisiteGroup": [],
-                "note": "" }
+                "note": "需為本系開課"
+            }
         ]
     }
 ]

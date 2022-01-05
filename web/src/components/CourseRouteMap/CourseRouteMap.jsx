@@ -1,6 +1,7 @@
 // Material Components
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
+import Tooltip from '@mui/material/Tooltip';
 
 // Main Components
 
@@ -13,11 +14,11 @@ import PropTypes from 'prop-types';
 const ColumnItem = props => {
     const data = props.data;
     return (
-        <Grid item>
-            <Button variant="contained">
+        <Tooltip title={data.credit + '學分數, ' + (data.typeGroup ? '群' + data.typeGroup : '必修')}  placement="left" arrow>
+            <Button variant={data.typeGroup ? "outlined" : "contained"}>
                 {data.name}
             </Button>
-        </Grid>
+        </Tooltip>
     );
 };
 

@@ -170,15 +170,8 @@ const useStyles = makeStyles(theme => createStyles({
         },
         responeDefault: [
             {
-                "semester": "default",
-                "courses": [
-                    {
-                        "name": "default",
-                        "typeGroup": "",
-                        "prerequisiteGroup": [0],
-                        "note": ""
-                    }
-                ]
+                "semester": "",
+                "courses": []
             }
         ],
         sideEffect: () => {
