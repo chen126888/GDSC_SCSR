@@ -4,8 +4,7 @@ import Typography from '@mui/material/Typography';
 // Main Components
 
 // Styles
-import { makeStyles } from '@material-ui/core/styles';
-import { createStyles } from '@mui/styles';
+import { makeStyles, createStyles } from '@mui/styles';
 // Hooks and Function
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
@@ -21,12 +20,8 @@ const useStyles = makeStyles(theme => createStyles({
     flexGrow: (clsx(props.flexGrow) ? props.flexGrow : 1),
   }),
   title: props => ({
-    position: "relative",
-    width: "100%",
-    fontFamily: "Noto Sans TC",
-    fontStyle: 'normal',
-    fontWeight: '300',
-    color: '#868686',
+    color: theme.palette.text.hint,
+    hright: '150%',
   }),
 }));
 

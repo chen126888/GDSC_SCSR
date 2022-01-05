@@ -4,13 +4,13 @@
             {
                 "name": "blabla1",
                 "time": [
-                    6, 9, 10, 6
+                    6, 9, 10
                 ],
-                "state": "selected",
+                "state": "",
                 "info_simple": {
                     "teacher": "Prof.blabla",
                     "course_id": "",
-                    "type": ""
+                    "type": "required"
                 }
             }, {
                 "name": "blabla2",
@@ -21,7 +21,7 @@
                 "info_simple": {
                     "teacher": "Prof.blabla",
                     "course_id": "",
-                    "type": ""
+                    "type": "normal"
                 }
             }, {
                 "name": "blabla3",
@@ -32,7 +32,7 @@
                 "info_simple": {
                     "teacher": "Prof.blabla",
                     "course_id": "",
-                    "type": ""
+                    "type": "required"
                 }
             }, {
                 "name": "blabla4",
@@ -43,7 +43,7 @@
                 "info_simple": {
                     "teacher": "Prof.blabla",
                     "course_id": "",
-                    "type": ""
+                    "type": "normal"
                 }
             }
         ],
@@ -57,7 +57,7 @@
                 "info_simple": {
                     "teacher": "Prof.blabla",
                     "course_id": "",
-                    "type": ""
+                    "type": "other"
                 }
             }, {
                 "name": "blabla2",
@@ -68,7 +68,7 @@
                 "info_simple": {
                     "teacher": "Prof.blabla",
                     "course_id": "",
-                    "type": ""
+                    "type": "other"
                 }
             }, {
                 "name": "blabla3",
@@ -79,7 +79,7 @@
                 "info_simple": {
                     "teacher": "Prof.blabla",
                     "course_id": "",
-                    "type": ""
+                    "type": "other"
                 }
             }, {
                 "name": "blabla4",
@@ -102,7 +102,7 @@
                 "info_simple": {
                     "teacher": "Prof.blabla",
                     "course_id": "",
-                    "type": ""
+                    "type": "required"
                 }
             }
         ],
@@ -131,7 +131,7 @@
                 "info_simple": {
                     "teacher": "Prof.blabla",
                     "course_id": "",
-                    "type": ""
+                    "type": "required"
                 }
             }
         ],

@@ -12,7 +12,7 @@ import Paper from '@mui/material/Paper';
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import { createStyles } from '@mui/styles';
 import SearchIcon from '@mui/icons-material/Search';
-import { EnlargeIcon, ShrinkIcon, FullScreenIcon } from './FrameBarIcon';
+import { EnlargeIcon, ShrinkIcon, FullScreenIcon } from './../../image/FrameBarIcon';
 
 // Hooks and Function
 

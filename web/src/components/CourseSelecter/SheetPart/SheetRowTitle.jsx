@@ -3,8 +3,7 @@ import Box from '@mui/material/Box';
 // Main Components
 import SheetRow from './SheetRow';
 // Styles
-import { makeStyles } from '@material-ui/core/styles';
-import { createStyles } from '@mui/styles';
+import { makeStyles, createStyles } from '@mui/styles';
 // Hooks and Function
 import PropTypes from 'prop-types';
 
@@ -12,7 +11,6 @@ const useStyles = makeStyles(theme => createStyles({
   dayRoot: props => ({
     position: "relative",
     height: `${props.itemHeight * (props.itemNum + 0.5)}vh`,
-    // width: "20%",
     display: 'flex',
     flex: 0.4,
     flexDirection: 'column',

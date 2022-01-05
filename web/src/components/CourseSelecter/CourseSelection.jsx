@@ -1,5 +1,4 @@
 // Material Components
-import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 // Main Components
 import TabLabel from './TabPart/CourseTabLabel';
@@ -7,21 +6,19 @@ import CourseTabBar from './TabPart/CourseTabBar';
 import Sheet from "./SheetPart/Sheet";
 import { DummybuttonCustom } from '../Main/DummyComponent';
 // Styles
-import { makeStyles } from '@material-ui/core/styles';
-import { createStyles } from '@mui/styles';
-import MinimizeIcon from '@mui/icons-material/Minimize';
+import { makeStyles, createStyles } from '@mui/styles';
 // Hooks and Function
 import { useState, Fragment } from 'react';
 import { useAxiosEffect } from '../../hooks/useAxios';
 import { childPropsGiver } from '../FancyFrame/FrameFunctions';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 
 const useStyles = makeStyles(theme => createStyles({
   tabBarItem: {
     fontSize: theme.spacing(3),
   },
   tabMain: {
-    flexGrow: 14,
     overflowY: "scroll",
     /** scrollbar hidden */
     "-ms-overflow-style": 'none',
@@ -32,7 +29,7 @@ const useStyles = makeStyles(theme => createStyles({
     borderBottomLeftRadius: theme.spacing(2),
     borderBottomRightRadius: theme.spacing(2),
     padding: theme.spacing(2),
-    boxShadow: `inset ${theme.spacing(0)}px ${theme.spacing(1)}px ${theme.spacing(1)}px rgba(0, 0, 0, 0.25)`,
+    boxShadow: theme.shadows.frameInner,
   },
   tabFrame: {
     overflowY: "scroll",
@@ -52,14 +49,7 @@ const useStyles = makeStyles(theme => createStyles({
     flexDirection: 'column',
     margin: 0,
     padding: 0,
-
-    
   },
-  Button: props => ({
-    // borderTopLeftRadius: theme.spacing(props.spacingLv),
-    color: 'white !important',
-    height: '100%',
-  }),
 
 }));
 
@@ -68,7 +58,7 @@ function CourseTabs({
   BarTaker, frameSize
 }) {
   const classes = useStyles();
-  const [ labels, setLables ] = useState([1,2]);
+  const [labels, setLables] = useState([1, 2]);
   const { response: contents, loading, error } = useAxiosEffect({
     method: 'GET',
     url: '/dummyCourseData.json',
@@ -82,9 +72,11 @@ function CourseTabs({
     sideEffect: () => {
       setLables(contents.length);
     }
-});
+  });
 
-
+  if (clsx(error)) {
+    console.log(error);
+  }
   const [value, setValue] = useState(0);
   const handleChange = (event, newValue) => setValue(newValue);
 
@@ -126,5 +118,9 @@ function CourseTabs({
     </Fragment>
   );
 };
+CourseTabBar.propTypes = {
+  BarTaker: PropTypes.node,
+  frameSize: PropTypes.number,
+}
 
 export default CourseTabs;
