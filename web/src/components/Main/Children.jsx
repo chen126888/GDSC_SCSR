@@ -3,6 +3,7 @@
 // Main Components
 import CourseTabs from '../CourseSelecter/CourseSelection';
 import RouteTabs from '../CourseRouteMap/CourseRoute';
+import SearchTabs from '../CourseSearch/CourseSearchMain';
 import { DummybuttonCustom, DummyFrameChild } from './DummyComponent';
 // Styles
 
@@ -53,7 +54,7 @@ var demoFrameData = [
     panelCustomShow: true,
     buttonCustomShow: true,
     searchInputShow: true,
-    children: <DummyFrameChild key={1} />,
+    children: <SearchTabs key={1} />,
   }, {
     label: '課程地圖',
     defaultDisplay: -1,
