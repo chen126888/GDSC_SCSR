@@ -10,18 +10,16 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 
 const useStyles = makeStyles(theme => createStyles({
-  root: props => ({
+  rootRow: props => ({
     position: "relative",
     height: `${props.itemHeight}vh`,
     justifyContent: 'center',
     alignItems: 'center',
     display: 'flex',
-    flexDirection: 'row',
     flexGrow: (clsx(props.flexGrow) ? props.flexGrow : 1),
   }),
   title: props => ({
     color: theme.palette.text.hint,
-    hright: '150%',
   }),
 }));
 
@@ -36,7 +34,7 @@ function SheetRow({
 
   return (
     <Paper
-      className={classes.root}
+      className={classes.rootRow}
       square={true}
       component={component}
       {...(

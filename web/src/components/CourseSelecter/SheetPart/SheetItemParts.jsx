@@ -79,13 +79,13 @@ function CourseInfoShow ({
         </Typography>
       </Grid>
       <Grid item xs={12}>
-        <Typography component="body1" className={classes.body} >
+        <Typography variant="body1" className={classes.body} >
           {courseTitle}
         </Typography>
-        <Typography component="body1" className={classes.body} >
+        <Typography variant="body1" className={classes.body} >
           {courseState}
         </Typography>
-        <Typography component="body1" className={classes.body} >
+        <Typography variant="body1" className={classes.body} >
           {courseTime}
         </Typography>
       </Grid>

@@ -1,9 +1,6 @@
 // Material Components
-
 // Main Components
-
 // Styles
-
 // Hooks and Function
 import {
   Children,
@@ -17,7 +14,9 @@ const frameEnlargePass = (allowMax, currentSize) => (currentSize < allowMax);
 const frameShrinkPass = (allowMin, currentSize) => (currentSize > allowMin);
 const childPropsGiver = (children, props) => Children.map(
   children, (child, i) => (isValidElement(child) ? cloneElement(child, {
-    keyForChild: i, key: i, ...props
+    keyForChild: i,
+    key: i,
+    ...props
   }) : child)
 );
 

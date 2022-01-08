@@ -145,6 +145,10 @@ function CourseItem({
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const handleCancelRegister = (courseID) => {
+    console.log(courseID, "be cancel");
+  }
+
   return (
     <Paper className={classes.root} >
       <Button onClick={handleOpen} className={classes.button} >
@@ -178,7 +182,9 @@ function CourseItem({
             <Button size="large" onClick={handleClose}>
               關閉
             </Button>
-            <Button size="large" variant="contained">
+            <Button size="large" variant="contained"
+              onClick={handleCancelRegister(courseInfo.course_id)}
+            >
               取消登記
             </Button>
           </CardActions>

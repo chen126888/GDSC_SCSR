@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import { dummyData } from './SheetColumnRender';
 
 const useStyles = makeStyles(theme => createStyles({
-  dayRoot: props => ({
+  root: props => ({
     position: "relative",
     height: `${props.itemHeight * (props.itemNum + 0.5)}vh`,
     display: 'flex',
@@ -35,17 +35,10 @@ function DayColumn({
   });
 
   return (
-    <Box
-      className={classes.dayRoot}
-      component={"td"}
-    >
+    <Box className={classes.root} component={"td"}>
       {renderResult}
       {Array.from({ length: itemNum }, (e, i) => (
-        <SheetRow
-          itemHeight={itemHeight}
-          rowIndex={""}
-          key={i}
-        />
+        <SheetRow itemHeight={itemHeight} rowIndex={""} key={i} />
       ))}
     </Box >
   )

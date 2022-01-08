@@ -3,12 +3,19 @@ import { createTheme } from '@mui/material/styles';
 let theme = createTheme();
 
 export const courseSelectThemeLightOne = createTheme(theme, {
+  ...theme,
   palette: {
     type: 'light',
     primary: {
       main: '#7188B4',
       dark: '#7188B4',
       light: '#7188B4',
+    },
+    antiPrimary: {
+      main: '#F0F0F0',
+      dark: '#F0F0F0',
+      light: '#F0F0F0',
+      contrastText: '#7188B4',
     },
     secondary: {
       main: '#CEC3B3',
@@ -104,12 +111,13 @@ export const courseSelectThemeLightOne = createTheme(theme, {
   },
   props: {
     MuiAppBar: {
-      color: 'transparent',
+      backgroundColor: 'transparent',
     },
   },
   shadows: {
     ...theme.shadows,
     frameInner: "inset 0px 4px 4px rgba(0, 0, 0, 0.25)",
-    frame: "-10px -11px 16px 1px rgba(252, 252, 252, 0.7), 9px 14px 24px -10px rgba(0, 0, 0, 0.25)"
+    frame: "-10px -11px 16px 1px rgba(252, 252, 252, 0.7), 9px 14px 24px -10px rgba(0, 0, 0, 0.25)",
+    none: 'none !important'
   },
 });

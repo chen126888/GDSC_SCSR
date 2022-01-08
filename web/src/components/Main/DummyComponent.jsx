@@ -13,11 +13,6 @@ import { childPropsGiver } from '../FancyFrame/FrameFunctions';
 import { useState } from 'react';
 
 const useStyles = makeStyles(theme => createStyles({
-  Button: {
-    // borderTopLeftRadius: theme.spacing(props.spacingLv),
-    color: 'white !important',
-    height: '100%',
-  },
   frameChild: {
     // height: "100%",
   },
@@ -29,10 +24,9 @@ const useStyles = makeStyles(theme => createStyles({
 
 // Children Component Example
 const DummybuttonCustom = props => {
-  const classes = useStyles(props);
   return (
-    <Button className={classes.Button} >
-      <MinimizeIcon fontSize='large' ></MinimizeIcon>
+    <Button color='antiPrimary' >
+      <MinimizeIcon fontSize='large' color='primary' ></MinimizeIcon>
     </Button>
   )
 };
