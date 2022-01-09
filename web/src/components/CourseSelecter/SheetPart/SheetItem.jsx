@@ -89,37 +89,42 @@ const useStylesCourseItem = makeStyles(theme => {
     title: {
       padding: theme.spacing(0.4),
       display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'flex-start',
       flexGrow: 1,
-    },
-    teacherState: {
-      display: 'flex',
-
     },
     teacher: {
       padding: theme.spacing(0.4),
       display: 'flex',
-      justifyContent: 'center',
       alignItems: 'flex-end',
       flexGrow: 1,
     },
+    state: {
+      position: 'absolute',
+      bottom: 0,
+      right: theme.spacing(0),
+      padding: theme.spacing(1, 1, 0, 1),
+      backgroundColor: 'inherit',
+    },
+
     modal: {
       position: 'absolute',
       top: '50%',
       left: '50%',
+      minWidth: '50%',
       transform: 'translate(-50%, -50%)',
       padding: theme.spacing(3),
 
       borderRadius: `${theme.spacing(4)} !important`,
       alignItems: 'center',
       justifyContent: 'center',
-
     },
     cardActions: {
       borderRadius: theme.spacing(2),
       display: 'flex',
       flexDirection: 'row-reverse',
+      '& button': {
+        width: '15%',
+        marginLeft: theme.spacing(1)
+      },
     },
 
   })
@@ -152,14 +157,14 @@ function CourseItem({
   return (
     <Paper className={classes.root} >
       <Button onClick={handleOpen} className={classes.button} >
-        <Box container className={classes.buttonPaper} >
+        <Box className={classes.buttonPaper} >
           <Typography component="h4" className={classes.title} >
             {courseTitle}
           </Typography>
-          <div className={classes.teacherState}>
-            <Typography variant="subtitle2" className={classes.teacher} >
-              {courseInfo.teacher}
-            </Typography>
+          <Typography variant="subtitle2" className={classes.teacher} >
+            {courseInfo.teacher}
+          </Typography>
+          <div className={classes.state} >
             <CourseStateShow courseState={courseState} />
           </div>
         </Box>
@@ -179,14 +184,17 @@ function CourseItem({
             />
           </CardContent>
           <CardActions className={classes.cardActions}>
-            <Button size="large" onClick={handleClose}>
-              關閉
-            </Button>
-            <Button size="large" variant="contained"
+            <Button 
+              size="large" 
+              variant="contained"
               onClick={handleCancelRegister(courseInfo.course_id)}
             >
               取消登記
             </Button>
+            <Button size="large" onClick={handleClose}>
+              關閉
+            </Button>
+
           </CardActions>
 
         </Card>

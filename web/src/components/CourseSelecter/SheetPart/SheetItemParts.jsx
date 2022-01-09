@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 // Main Components
 import {
   SelectableIcon, RegisterableIcon, InRegisterIcon, AccepttedIcon, UnreservedIcon
-} from './../../../image/SheetIcon';
+} from '../../../image/CourseItem/SheetIcon';
 // Styles
 import { makeStyles, createStyles } from '@mui/styles';
 // Hooks and Function

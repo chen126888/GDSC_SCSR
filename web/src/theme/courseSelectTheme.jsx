@@ -118,6 +118,6 @@ export const courseSelectThemeLightOne = createTheme(theme, {
     ...theme.shadows,
     frameInner: "inset 0px 4px 4px rgba(0, 0, 0, 0.25)",
     frame: "-10px -11px 16px 1px rgba(252, 252, 252, 0.7), 9px 14px 24px -10px rgba(0, 0, 0, 0.25)",
-    none: 'none !important'
+    none: 'none !important',
   },
 });

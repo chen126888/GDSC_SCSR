@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import { makeStyles, createStyles } from '@mui/styles';
 import { alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
-import { EnlargeIcon, ShrinkIcon, FullScreenIcon } from './../../image/FrameBarIcon';
+import { EnlargeIcon, ShrinkIcon, FullScreenIcon } from '../../image/FrameBar/FrameBarIcon';
 // Hooks and Function
 
 const useStyles = makeStyles(theme => {

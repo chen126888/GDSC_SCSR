@@ -55,9 +55,9 @@ const useStyles = makeStyles(theme => {
       flexGrow: 1.5,
     }),
     panelFunction: props => ({
-      flexGrow: 2,
-      align: 'center',
-      border: '1px solid white'
+      flexGrow: 3,
+      border: '1px solid white',
+      height: '100%',
     }),
     panelButton: props => ({
       flexGrow: 0,

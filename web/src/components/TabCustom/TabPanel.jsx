@@ -1,13 +1,10 @@
 // Material Components
-
 // Main Components
-
 // Styles
-
 // Hooks and Function
 import PropTypes from 'prop-types';
 
-const TabLabel = props => {
+const TabPanel = props => {
   const { children, value, index, ...other } = props;
   return (
     <div
@@ -21,10 +18,10 @@ const TabLabel = props => {
     </div>
   );
 };
-TabLabel.propTypes = {
+TabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.any.isRequired,
   value: PropTypes.any.isRequired,
 };
 
-export default TabLabel;
+export default TabPanel;

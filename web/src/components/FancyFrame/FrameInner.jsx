@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => {
       display: 'flex',
     },
     inner: {
-      padding: theme.spacing(1, 1, 0, 1),
+      padding: theme.spacing(1, 1, 0.5, 1),
       flexGrow: 1,
       borderRadius: theme.spacing(2),
       borderTopLeftRadius: theme.spacing(2),

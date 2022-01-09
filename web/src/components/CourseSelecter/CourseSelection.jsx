@@ -1,8 +1,8 @@
 // Material Components
 // import Box from '@mui/material/Box';
 // Main Components
-import TabLabel from './TabPart/CourseTabLabel';
-import CourseTabBar from './TabPart/CourseTabBar';
+import TabBar from '../TabCustom/TabBar';
+import TabPanel from '../TabCustom/TabPanel';
 import Sheet from "./SheetPart/Sheet";
 import { FrameInner, FrameBarSummary } from '../FancyFrame/FrameInner';
 import { DummybuttonCustom } from '../Main/DummyComponent';
@@ -11,7 +11,6 @@ import { makeStyles, createStyles } from '@mui/styles';
 // Hooks and Function
 import { useState, Fragment } from 'react';
 import { useAxiosEffect } from '../../hooks/useAxios';
-import { childPropsGiver } from '../FancyFrame/FrameFunctions';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
@@ -74,7 +73,7 @@ function CourseTabs({
           (<DummybuttonCustom key={1} />),
         ]}
         panelCustom={
-          <CourseTabBar
+          <TabBar
             onChange={handleChange}
             labels={labels}
             value={value}
@@ -83,7 +82,7 @@ function CourseTabs({
       />
       <FrameInner>
         {contents.map((tabContent, i) => (
-          <TabLabel
+          <TabPanel
             value={value}
             index={i}
             key={i}
@@ -91,13 +90,13 @@ function CourseTabs({
           >
             {loading ? <p>loading...</p> : ""}
             <Sheet courseWeekData={tabContent} itemHeight={6} />
-          </TabLabel>
+          </TabPanel>
         ))}
       </FrameInner>
     </Fragment>
   );
 };
-CourseTabBar.propTypes = {
+TabBar.propTypes = {
   BarTaker: PropTypes.node,
   frameSize: PropTypes.number,
 }
