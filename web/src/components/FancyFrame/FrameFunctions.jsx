@@ -1,6 +1,8 @@
 // Material Components
+import Box from '@mui/material/Box';
 // Main Components
 // Styles
+import { makeStyles, createStyles } from '@mui/styles';
 // Hooks and Function
 import {
   Children,
@@ -20,4 +22,9 @@ const childPropsGiver = (children, props) => Children.map(
   }) : child)
 );
 
-export { frameWidthGiver, frameEnlargePass, frameShrinkPass, childPropsGiver };
+export { 
+  frameWidthGiver,
+  frameEnlargePass,
+  frameShrinkPass,
+  childPropsGiver
+};

@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 // Styles
 import { makeStyles, createStyles } from '@mui/styles';
 // Hooks and Function
+import { childPropsGiver } from './FrameFunctions';
 
 const useStyles = makeStyles(theme => {
 
@@ -16,22 +17,24 @@ const useStyles = makeStyles(theme => {
       "&::-webkit-scrollbar": {
         display: 'none'
       },
-      padding: theme.spacing(1),
+      padding: theme.spacing(0, 1.5, 0.5, 1.5),
       borderBottomLeftRadius: theme.spacing(2),
       borderBottomRightRadius: theme.spacing(2),
       display: 'flex',
     },
     inner: {
-      padding: theme.spacing(2),
+      padding: theme.spacing(1, 1, 0, 1),
       flexGrow: 1,
       borderRadius: theme.spacing(2),
+      borderTopLeftRadius: theme.spacing(2),
+      borderTopRightRadius: theme.spacing(2),
       boxShadow: theme.shadows.frameInner,
     }
 
   })
 });
 
-function FrameInner(props) {
+const FrameInner = props => {
   const classes = useStyles();
 
   return (
@@ -43,4 +46,20 @@ function FrameInner(props) {
   )
 }
 
-export default FrameInner
+const FrameBarSummary = (
+  { buttonCustom, panelCustom, barTaker }
+) => {
+
+  const tabBarWithProps = childPropsGiver(barTaker, {
+    buttonCustom: buttonCustom,
+    panelCustom: panelCustom,
+  })
+
+  return (
+    <>
+      {tabBarWithProps}
+    </>
+  )
+}
+
+export { FrameInner, FrameBarSummary }

@@ -4,7 +4,7 @@
 import TabLabel from './TabPart/CourseTabLabel';
 import CourseTabBar from './TabPart/CourseTabBar';
 import Sheet from "./SheetPart/Sheet";
-import FrameInner from '../FancyFrame/FrameInner';
+import { FrameInner, FrameBarSummary } from '../FancyFrame/FrameInner';
 import { DummybuttonCustom } from '../Main/DummyComponent';
 // Styles
 import { makeStyles, createStyles } from '@mui/styles';
@@ -65,42 +65,35 @@ function CourseTabs({
   const [value, setValue] = useState(0);
   const handleChange = (event, newValue) => setValue(newValue);
 
-  // Bar Add
-  const tabBarWithProps = childPropsGiver(BarTaker, {
-    buttonCustom: [
-      (<DummybuttonCustom key={0} />),
-      (<DummybuttonCustom key={1} />)
-    ],
-    panelCustom: (
-      <CourseTabBar
-        onChange={handleChange}
-        labels={labels}
-        value={value}
-      />
-    ),
-  })
-
-  const TabMain = props => (
-    <FrameInner>
-      {contents.map((tabContent, i) => (
-        <TabLabel
-          value={value}
-          index={i}
-          key={i}
-          className={classes.tabFrame}
-        >
-          {loading ? <p>loading...</p> : ""}
-          <Sheet courseWeekData={tabContent} itemHeight={6} />
-        </TabLabel>
-      ))}
-    </FrameInner>
-  );
-
   return (
     <Fragment >
-      {tabBarWithProps}
-      {/* {tabMain} */}
-      <TabMain />
+      <FrameBarSummary
+        barTaker={BarTaker}
+        buttonCustom={[
+          (<DummybuttonCustom key={0} />),
+          (<DummybuttonCustom key={1} />),
+        ]}
+        panelCustom={
+          <CourseTabBar
+            onChange={handleChange}
+            labels={labels}
+            value={value}
+          />
+        }
+      />
+      <FrameInner>
+        {contents.map((tabContent, i) => (
+          <TabLabel
+            value={value}
+            index={i}
+            key={i}
+            className={classes.tabFrame}
+          >
+            {loading ? <p>loading...</p> : ""}
+            <Sheet courseWeekData={tabContent} itemHeight={6} />
+          </TabLabel>
+        ))}
+      </FrameInner>
     </Fragment>
   );
 };
