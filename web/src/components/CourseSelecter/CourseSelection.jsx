@@ -1,11 +1,11 @@
 // Material Components
-// import Box from '@mui/material/Box';
 // Main Components
 import TabBar from '../TabCustom/TabBar';
 import TabPanel from '../TabCustom/TabPanel';
 import Sheet from "./SheetPart/Sheet";
 import { FrameInner, FrameBarSummary } from '../FancyFrame/FrameInner';
-import { DummybuttonCustom } from '../Main/DummyComponent';
+import { DummybuttonCustom } from '../DummyComponent';
+import { SaveButton } from './CourseFunction'
 // Styles
 import { makeStyles, createStyles } from '@mui/styles';
 // Hooks and Function
@@ -69,7 +69,7 @@ function CourseTabs({
       <FrameBarSummary
         barTaker={BarTaker}
         buttonCustom={[
-          (<DummybuttonCustom key={0} />),
+          (<SaveButton key={0} />),
           (<DummybuttonCustom key={1} />),
         ]}
         panelCustom={

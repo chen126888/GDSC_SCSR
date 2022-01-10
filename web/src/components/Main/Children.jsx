@@ -1,10 +1,8 @@
 // Material Components
-
 // Main Components
 import CourseTabs from '../CourseSelecter/CourseSelection';
-import { DummybuttonCustom, DummyFrameChild } from './DummyComponent';
+import { DummybuttonCustom, DummyFrameChild } from '../DummyComponent';
 // Styles
-
 // Hooks and Function
 
 /**
@@ -42,7 +40,7 @@ var demoFrameData = [
     allowMin: 0,
     panelCustomShow: true,
     buttonCustomShow: true,
-    searchInputShow: true,
+    searchInputShow: false,
     children: <DummyFrameChild key={1} />,
   }, {
     label: '課程搜尋',
@@ -51,7 +49,7 @@ var demoFrameData = [
     allowMin: 1,
     panelCustomShow: true,
     buttonCustomShow: true,
-    searchInputShow: true,
+    searchInputShow: false,
     children: <DummyFrameChild key={1} />,
   }, {
     label: '課程地圖',
@@ -60,7 +58,7 @@ var demoFrameData = [
     allowMin: 0,
     panelCustomShow: true,
     buttonCustomShow: true,
-    searchInputShow: true,
+    searchInputShow: false,
     children: <DummyFrameChild key={1} />,
   },
 ];

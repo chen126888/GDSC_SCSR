@@ -9,7 +9,7 @@ import Tab from '@mui/material/Tab';
 import { makeStyles, createStyles } from '@mui/styles';
 import MinimizeIcon from '@mui/icons-material/Minimize';
 // Hooks and Function
-import { childPropsGiver } from '../FancyFrame/FrameFunctions';
+import { childPropsGiver } from './FancyFrame/FrameFunctions';
 import { useState } from 'react';
 
 const useStyles = makeStyles(theme => createStyles({
